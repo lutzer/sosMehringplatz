@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true">
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="@color/buttonBgColorAccept" />
+                </shape>
+            </item>
+            <item>
+                <bitmap android:src="@drawable/ic_check_white">
+                </bitmap>
+            </item>
+        </layer-list>
+    </item>
+    <item android:state_enabled="false">
+        <layer-list>
+            <item>
+                <shape android:shape="oval" >
+                    <solid android:color="@color/buttonBgColorDisabled" />
+                </shape>
+            </item>
+            <item>
+                <bitmap android:src="@drawable/ic_check_white">
+                </bitmap>
+            </item>
+        </layer-list>
+    </item>
+</selector>

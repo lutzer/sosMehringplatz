@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true">
+        <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+            <item>
+                <shape android:shape="oval">
+                    <stroke android:width="20dp" android:color="@color/buttonBgColorRant" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>
