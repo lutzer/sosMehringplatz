@@ -8,27 +8,24 @@ import android.view.MenuItem;
 import android.view.View;
 
 import org.drl.lutz.sosmehringplatzapp.R;
+import org.drl.lutz.sosmehringplatzapp.main.datatypes.Submission;
 
-public class SelectInputActivity extends FullscreenActivity {
+public class TextActivity extends FullscreenActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_input);
+        setContentView(R.layout.activity_text);
 
         setIdleCloseTimer(getResources().getInteger(R.integer.idleTime));
     }
 
-    public void onButtonClicked(View view) {
-        //showAlert("Button","clicked");
-    }
+    public void onAcceptButtonClicked(View view) {
 
-    public void transitionNext() {
+        Intent intent = new Intent(getBaseContext(), UploadActivity.class);
+        intent.putExtra("submission",new Submission("text","test text"));
 
-    }
-
-    public void onTextButtonClicked(View view) {
-        startActivity(new Intent(this, TextActivity.class));
+        startActivity(intent);
         finish();
     }
 }

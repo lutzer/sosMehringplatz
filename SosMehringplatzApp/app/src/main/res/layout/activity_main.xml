@@ -11,32 +11,72 @@
         android:gravity="center"
         >
 
-        <Button
-            android:id="@+id/questionButton"
-            style="@style/roundButton"
-            android:background="@drawable/question_button"
-            android:textColor="@color/buttonBgColorQuestion"
-            android:onClick="onButtonClicked"
-            android:text="\?"
-            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/rantButton"
-            style="@style/roundButton"
-            android:background="@drawable/rant_button"
-            android:textColor="@color/buttonBgColorRant"
-            android:onClick="onButtonClicked"
-            android:text="!"/>
+            <Button
+                android:id="@+id/questionButton"
+                style="@style/roundButton"
+                android:background="@drawable/question_button"
+                android:textColor="@color/buttonBgColorQuestion"
+                android:onClick="onButtonClicked"
+                android:text="\?"
+                />
 
-        <Button
-            android:id="@+id/ideaButton"
-            style="@style/roundButton"
-            android:background="@drawable/idea_button"
-            android:textColor="@color/buttonBgColorIdea"
-            android:onClick="onButtonClicked"
-            android:text="i"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/labelQuestionButton"/>
+
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/rantButton"
+                style="@style/roundButton"
+                android:background="@drawable/rant_button"
+                android:textColor="@color/buttonBgColorRant"
+                android:onClick="onButtonClicked"
+                android:text="!"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/labelRantButton"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/ideaButton"
+                style="@style/roundButton"
+                android:background="@drawable/idea_button"
+                android:textColor="@color/buttonBgColorIdea"
+                android:onClick="onButtonClicked"
+                android:text="i"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/labelIdeaButton"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </RelativeLayout>

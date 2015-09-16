@@ -3,7 +3,7 @@
 
     <color name="background">#000000</color>
     <color name="foreground">#ffffff</color>
-    <color name="foreground2">#FFAAAAAA</color>
+    <color name="backgroundLight">#111111</color>
 
     <color name="buttonBgColorAccept">#ff009900</color>
     <color name="buttonBgColorReject">#ffff0000</color>

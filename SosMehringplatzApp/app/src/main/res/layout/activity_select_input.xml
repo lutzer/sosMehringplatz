@@ -17,7 +17,7 @@
             android:id="@+id/inputButtonText"
             style="@style/roundButton"
             android:background="@drawable/text_button"
-            android:onClick="onButtonClicked"
+            android:onClick="onTextButtonClicked"
             />
 
         <Button
