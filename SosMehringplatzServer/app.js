@@ -17,20 +17,6 @@ io.on('connection', function(socket){
     });
 });
 
-/*
-//show uploaded files
-app.use('/uploads', express.static(__dirname + config.uploadPath));
-
-// show form
-app.get('/form',function(req,res){
-      res.sendFile("www/form.html",options);
-});
-
-// show client
-app.use('/',express.static('www',options));
-*/
-
-
 /* Load Router */
 
 var router = require('./router')(app);
