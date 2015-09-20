@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+	<head>
+	<title>Test Form</title>
+
+	</head>
+	<body>
+		<form id        =  "uploadForm"
+		     enctype   =  "multipart/form-data"
+		     action    =  "/api/submissions/"
+		     method    =  "post"
+		>
+			Files: <input type="file" name="files[]" multiple/>
+			Text: <input type="text" name="submission_content" />
+			Author: <input type="text" name="submission_author" />
+			<input type="hidden" name="submission_type" value="rant"/>
+			<input type="submit" value="Submit" name="submit">
+		</form>
+	</body>
+</html>

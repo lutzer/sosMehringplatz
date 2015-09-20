@@ -1,11 +1,11 @@
 package org.drl.lutz.sosmehringplatzapp.main.activities;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
 
 import org.drl.lutz.sosmehringplatzapp.R;
+import org.drl.lutz.sosmehringplatzapp.main.datatypes.QuestionType;
 
 
 public class MainActivity extends FullscreenActivity {
@@ -17,10 +17,17 @@ public class MainActivity extends FullscreenActivity {
     }
 
     public void onButtonClicked(View view) {
-        this.transitionNext();
+        if (view == findViewById(R.id.questionButton))
+            this.transitionNext(QuestionType.QUESTION);
+        else if (view == findViewById(R.id.rantButton))
+            this.transitionNext(QuestionType.RANT);
+        else
+            this.transitionNext(QuestionType.IDEA);
     }
 
-    public void transitionNext() {
-        startActivity(new Intent(this, SelectInputActivity.class));
+    public void transitionNext(QuestionType type) {
+        Intent intent = new Intent(this, SelectInputActivity.class);
+        intent.putExtra("type", type);
+        startActivity(intent);
     }
 }

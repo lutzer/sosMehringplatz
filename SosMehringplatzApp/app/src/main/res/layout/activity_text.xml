@@ -10,25 +10,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:gravity="center">
 
         <EditText
             android:layout_width="500dp"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:inputType="textMultiLine"
             android:id="@+id/editText"
             android:hint="@string/textEditPlaceholder"
             style="@style/textField"/>
 
-        <Button
-            android:id="@+id/acceptButton"
-            style="@style/roundButtonSmall"
-            android:background="@drawable/accept_button"
-            android:onClick="onAcceptButtonClicked"
-            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/acceptButton"
+                style="@style/roundButtonSmall"
+                android:background="@drawable/accept_button"
+                android:onClick="onAcceptButtonClicked"
+                />
+
+            <Button
+                android:id="@+id/cancelButton"
+                style="@style/roundButtonSmall"
+                android:background="@drawable/cancel_button"
+                android:onClick="onCancelButtonClicked"
+                />
 
         </LinearLayout>
 
 
+
+    </LinearLayout>
 
 </RelativeLayout>

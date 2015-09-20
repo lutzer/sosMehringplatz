@@ -21,7 +21,7 @@
                 android:id="@+id/questionButton"
                 style="@style/roundButton"
                 android:background="@drawable/question_button"
-                android:textColor="@color/buttonBgColorQuestion"
+                android:textColor="@color/bgColorQuestion"
                 android:onClick="onButtonClicked"
                 android:text="\?"
                 />
@@ -29,7 +29,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/labelQuestionButton"/>
+                android:textColor="@color/bgColorQuestion"
+                android:text="@string/labelQuestionButton"
+                style="@style/labelText"/>
 
 
         </LinearLayout>
@@ -44,14 +46,17 @@
                 android:id="@+id/rantButton"
                 style="@style/roundButton"
                 android:background="@drawable/rant_button"
-                android:textColor="@color/buttonBgColorRant"
+                android:textColor="@color/bgColorRant"
                 android:onClick="onButtonClicked"
-                android:text="!"/>
+                android:text="!"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/labelRantButton"/>
+                android:text="@string/labelRantButton"
+                android:textColor="@color/bgColorRant"
+                style="@style/labelText"/>
 
         </LinearLayout>
 
@@ -65,14 +70,16 @@
                 android:id="@+id/ideaButton"
                 style="@style/roundButton"
                 android:background="@drawable/idea_button"
-                android:textColor="@color/buttonBgColorIdea"
+                android:textColor="@color/bgColorIdea"
                 android:onClick="onButtonClicked"
                 android:text="i"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/labelIdeaButton"/>
+                android:text="@string/labelIdeaButton"
+                android:textColor="@color/bgColorIdea"
+                style="@style/labelText"/>
 
         </LinearLayout>
 

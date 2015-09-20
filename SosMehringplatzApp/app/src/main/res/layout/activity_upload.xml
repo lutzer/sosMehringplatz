@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/bodyText"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/headerSize"
+        android:text="@string/uploadBodyText"
+        style="@style/darkText"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/headerSize"
+        android:gravity="center">
+
+
+        <ProgressBar
+            style="@style/progressBar"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:max="100"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

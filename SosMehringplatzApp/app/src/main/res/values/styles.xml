@@ -12,7 +12,7 @@
 
     <!-- Text styles -->
     <style name="normalText">
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">28sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:paddingTop">20dp</item>
         <item name="android:paddingBottom">20dp</item>
@@ -21,9 +21,20 @@
         <item name="android:lineSpacingMultiplier">1.3</item>
     </style>
 
-    <style name="smallText" parent="normalText">
-        <item name="android:textSize">18sp</item>
-        <item name="android:color">@color/foreground2</item>
+
+    <style name="darkText" parent="normalText">
+        <item name="android:textColor">@color/inputButtonColor</item>
+    </style>
+
+
+    <style name="labelText" parent="normalText">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="darkLabelText" parent="labelText">
+        <item name="android:textColor">@color/inputButtonColor</item>
     </style>
 
     <style name="normalTextBold" parent="normalText">
@@ -59,18 +70,23 @@
     </style>
 
     <style name="roundButtonSmall" parent="roundButton">
-        <item name="android:layout_width">120dp</item>
-        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_margin">10dp</item>
     </style>
 
     <style name="textField">
         <item name="android:textSize">12pt</item>
-        <item name="android:background">@color/backgroundLight</item>
-        <item name="android:textColor">@color/foreground</item>
-        <item name="android:textColorHint">@color/foreground</item>
+        <item name="android:background">@color/foreground</item>
+        <item name="android:textColor">@color/background</item>
+        <item name="android:textColorHint">@color/textHintColor</item>
         <item name="android:layout_margin">20dp</item>
         <item name="android:padding">10dp</item>
         <item name="android:gravity">top</item>
+    </style>
+
+    <style name="progressBar" parent="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal">
+        <item name="android:padding">20dp</item>
     </style>
 
 </resources>

@@ -6,6 +6,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -25,18 +30,27 @@
         <activity
             android:name=".main.activities.SelectInputActivity"
             android:label="@string/title_activity_select_input"
-            android:screenOrientation="landscape"
-            android:parentActivityName=".main.activities.MainActivity">
+            android:parentActivityName=".main.activities.MainActivity"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".main.activities.TextActivity"
             android:label="@string/title_activity_text"
-            android:screenOrientation="landscape"
             android:parentActivityName=".main.activities.SelectInputActivity"
-            android:windowSoftInputMode="adjustPan">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.drl.lutz.sosmehringplatzapp.main.activities.SelectInputActivity" />
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <activity
+            android:name=".main.activities.SubmitActivity"
+            android:label="@string/title_activity_submit"
+            android:screenOrientation="landscape"
+            android:parentActivityName=".main.activities.SelectInputActivity">
+        </activity>
+        <activity
+            android:name=".main.activities.UploadActivity"
+            android:label="@string/title_activity_upload"
+            android:parentActivityName=".main.activities.SubmitActivity"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 

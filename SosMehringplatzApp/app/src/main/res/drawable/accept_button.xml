@@ -4,11 +4,13 @@
         <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="@color/buttonBgColorAccept" />
+                    <stroke
+                        android:width="10dp"
+                        android:color="@color/inputButtonColor"/>
                 </shape>
             </item>
             <item>
-                <bitmap android:src="@drawable/ic_check_white">
+                <bitmap android:src="@drawable/checkmark">
                 </bitmap>
             </item>
         </layer-list>
@@ -16,12 +18,14 @@
     <item android:state_enabled="false">
         <layer-list>
             <item>
-                <shape android:shape="oval" >
-                    <solid android:color="@color/buttonBgColorDisabled" />
+                <shape android:shape="oval">
+                    <stroke
+                        android:width="10dp"
+                        android:color="@color/buttonBgColorDisabled"/>
                 </shape>
             </item>
             <item>
-                <bitmap android:src="@drawable/ic_check_white">
+                <bitmap android:src="@drawable/checkmark">
                 </bitmap>
             </item>
         </layer-list>

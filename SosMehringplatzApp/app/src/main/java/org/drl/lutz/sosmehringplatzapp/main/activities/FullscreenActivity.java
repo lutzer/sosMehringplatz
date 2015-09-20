@@ -6,9 +6,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import org.drl.lutz.sosmehringplatzapp.R;
+import org.drl.lutz.sosmehringplatzapp.main.datatypes.QuestionType;
 import org.drl.lutz.sosmehringplatzapp.main.utils.IdleTimer;
 
 /**
@@ -33,7 +36,7 @@ abstract public class FullscreenActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         //hide all system elements
-        setImmersiveMode(true);
+        //setImmersiveMode(true);
 
         // never turn screen off
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -145,11 +148,8 @@ abstract public class FullscreenActivity extends Activity {
             new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    if (title == "Error")
-                        finish();
                 }
             });
         alertDialog.show();
     }
-
 }

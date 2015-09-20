@@ -4,7 +4,7 @@
         <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
             <item>
                 <shape android:shape="oval">
-                    <stroke android:width="20dp" android:color="@color/buttonBgColorRant" />
+                    <stroke android:width="20dp" android:color="@color/bgColorRant" />
                 </shape>
             </item>
         </layer-list>

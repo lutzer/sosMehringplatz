@@ -4,7 +4,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="#ff0000"
     tools:context="org.drl.lutz.sosmehringplatzapp.main.activities.SelectInputActivity">
 
     <LinearLayout
@@ -13,27 +12,73 @@
         android:gravity="center"
         >
 
-        <Button
-            android:id="@+id/inputButtonText"
-            style="@style/roundButton"
-            android:background="@drawable/text_button"
-            android:onClick="onTextButtonClicked"
-            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <Button
-            android:id="@+id/inputButtonSound"
-            style="@style/roundButton"
-            android:background="@drawable/mic_button"
-            android:onClick="onButtonClicked"
-            />
+            <Button
+                android:id="@+id/inputButtonText"
+                style="@style/roundButton"
+                android:background="@drawable/text_button"
+                android:onClick="onTextButtonClicked"
+                />
 
-        <Button
-            android:id="@+id/inputButtonVideo"
-            style="@style/roundButton"
-            android:background="@drawable/video_button"
-            android:onClick="onButtonClicked"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/labelTextInputButton"
+                style="@style/darkLabelText"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/inputButtonSound"
+                style="@style/roundButton"
+                android:background="@drawable/mic_button"
+                android:onClick="onSoundButtonClicked"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/labelSoundInputButton"
+                style="@style/darkLabelText"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/inputButtonVideo"
+                style="@style/roundButton"
+                android:background="@drawable/video_button"
+                android:onClick="onVideoButtonClicked"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/labelVideoInputButton"
+                style="@style/darkLabelText"/>
+
+
+        </LinearLayout>
 
     </LinearLayout>
+
 
 </RelativeLayout>

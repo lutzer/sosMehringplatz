@@ -1,9 +1,8 @@
 package org.drl.lutz.sosmehringplatzapp.main.activities;
 
-import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -14,9 +13,11 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.apache.http.Header;
 
-import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class UploadActivity extends FullscreenActivity {
+
+public class UploadActivity extends QuestionActivity {
 
 
     @Override
@@ -36,6 +37,8 @@ public class UploadActivity extends FullscreenActivity {
             return;
         }
 
+        this.setQuestionType(submission.type);
+
         //start upload to web server automatically
         uploadSubmission(submission);
 
@@ -43,7 +46,7 @@ public class UploadActivity extends FullscreenActivity {
 
     public void uploadSubmission(Submission submission) {
 
-        /*final FileUploader uploader = new FileUploader(getApplicationContext(),soundFile,location);
+        final FileUploader uploader = new FileUploader(getApplicationContext(),submission);
 
         String uploadUrl = getResources().getString(R.string.UploadWebUrl);
 
@@ -53,10 +56,12 @@ public class UploadActivity extends FullscreenActivity {
             uploader.upload(uploadUrl,  new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int i, Header[] headers, byte[] bytes) {
-                    ((TextView)findViewById(R.id.bodyText)).setText(R.string.upload_body_text_finished);
-                    findViewById(R.id.doneButton).setEnabled(true);
+                    ((TextView)findViewById(R.id.bodyText)).setText(R.string.uploadBodyTextFinished);
+                    findViewById(R.id.acceptButton).setEnabled(true);
                     progressBar.setProgress(100);
                     pauseIdleTimer(false);
+
+                    done();
 
                     //delete file after succesfull upload
                     //uploader.deleteFile();
@@ -66,6 +71,8 @@ public class UploadActivity extends FullscreenActivity {
                 public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
                     throwable.printStackTrace();
                     showAlert("Error", "Failed to upload file to server: " + throwable.toString());
+
+                    done();
                 }
 
                 @Override
@@ -77,12 +84,20 @@ public class UploadActivity extends FullscreenActivity {
             pauseIdleTimer(true);
 
         } catch (Exception e) {
-            this.showAlert("Error","Error uploading lullaby: "+e.toString());
+            this.showAlert("Error","Error uploading submission: "+e.toString());
             return;
-        }*/
+        }
     }
 
-    public void onAcceptButtonClicked(View view) {
-        finish();
+    public void done() {
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Log.e("TIMER", "finish activity");
+                finish();
+            }
+        }, 2000);
+
     }
 }

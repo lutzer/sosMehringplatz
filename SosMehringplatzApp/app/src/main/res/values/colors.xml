@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="background">#000000</color>
+    <color name="background">#222222</color>
     <color name="foreground">#ffffff</color>
-    <color name="backgroundLight">#111111</color>
+    <color name="backgroundLight">#666666</color>
+    <color name="textHintColor">#999999</color>
 
     <color name="buttonBgColorAccept">#ff009900</color>
     <color name="buttonBgColorReject">#ffff0000</color>
     <color name="buttonBgColorAction">#ffffcc22</color>
 
-    <color name="buttonBgColorQuestion">#ffffcc22</color>
-    <color name="buttonBgColorQuestion2">#ffffcc22</color>
-
-    <color name="buttonBgColorRant">#ff0000</color>
-    <color name="buttonBgColorIdea">#ff009900</color>
+    <color name="bgColorQuestion">#ffffcc22</color>
+    <color name="bgColorRant">#ff0000</color>
+    <color name="bgColorIdea">#ff009900</color>
 
     <color name="inputButtonColor">#000000</color>
 

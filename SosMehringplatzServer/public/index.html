@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+	<head>
+	<title>Test Client</title>
+	<script src="libs/socket.io.js"></script>
+	<script>
+		var socket = io();
+		socket.on('submission', function(submission){
+			console.log(submission);
+		    $('#messages').append($('<li>').text(submission.submission_text));
+		 });
+	</script>
+	</head>
+	<body>
+		<h1>Messages</h1>
+		<ul id="messages"></ul>
+	</body>
+</html>

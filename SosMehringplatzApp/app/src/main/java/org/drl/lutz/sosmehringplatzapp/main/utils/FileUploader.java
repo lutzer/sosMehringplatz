@@ -7,6 +7,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.drl.lutz.sosmehringplatzapp.main.datatypes.Submission;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -15,12 +17,12 @@ import java.io.FileNotFoundException;
  */
 public class FileUploader {
 
-    private File file;
+    private Submission submission;
 
     private Context context;
 
-    public FileUploader(Context context, File file) {
-        this.file = file;
+    public FileUploader(Context context, Submission submission) {
+        this.submission = submission;
         this.context = context;
     }
 
@@ -30,8 +32,10 @@ public class FileUploader {
 
         RequestParams params = new RequestParams();
         try {
-            params.put("file", this.file);
-            //params.put("location","test");
+            params.put("file", submission.file);
+            params.put("submission_type",submission.type.toString());
+            params.put("submission_author",submission.author);
+            params.put("submission_message",submission.text);
         } catch(FileNotFoundException e) {
             throw e;
         }
@@ -40,7 +44,7 @@ public class FileUploader {
     }
 
     public void deleteFile() {
-        this.file.delete();
+        this.submission.file.delete();
     }
 
 }
