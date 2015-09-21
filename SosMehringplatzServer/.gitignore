@@ -2,3 +2,4 @@ data/*
 public/uploads/*
 tmp/*
 node_modules/*
+!.keep

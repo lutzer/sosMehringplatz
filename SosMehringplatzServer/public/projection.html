@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+	<head>
+	<title>Test Client</title>
+	<!--<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>-->
+	<script src="libs/socket.io.js"></script>
+	<script src="libs/d3.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/vector.js"></script>
+    <script src="js/field.js"></script>
+    <script src="js/particle.js"></script>
+    <script src="js/particleSystem.js"></script>
+	<style type="text/css">
+
+		circle {
+		 	stroke: #000;
+			stroke-opacity: 0.5;
+		}
+
+	</style>
+	<script>
+
+		/* SERVER COMMUNICATION */
+
+		var socket = io();
+		var addSubmission = function(submission) {
+			//$('#messages').append('<li>'+submission._id+':'+submission.content+'</li>');
+		};
+
+		socket.on('connect', function() {
+			console.log('socket connected');
+
+			//get initial list
+			socket.emit('submissions:list'); 
+		});
+
+		socket.on('submissions:added', function(res) {
+			addSubmission(res.data);
+		});
+
+		// only load the initial list once
+		socket.once('submissions:list', function(res) {
+			res.data.forEach( function(elem) {
+				addSubmission(elem);
+			});
+		});
+	</script>
+	</head>
+	<body>
+		<div id="body">
+    	</div>
+    	<script>
+
+            var w = window.innerWidth,
+                h = window.innerHeight;
+                colors = ['#aa0000','#00aa00','#0000aa']
+            
+
+            /* Set up Canvas */
+
+            var svg = d3.select("#body").append("svg:svg")
+                .attr("width", w)
+                .attr("height", h);
+
+            /* Set up particle system */
+            var system = new ParticleSystem(svg);
+
+            for (var i=0;i<20;i++) {
+                system.emit(new Particle(
+                    new Vector(Math.random()*w,Math.random()*h),
+                    10 + Math.random()*20,
+                    new Vector(0,0),
+                    new Vector(0,0)
+                ));
+            }
+
+            system.addField(new Field(
+                new Vector(0,0),
+                -1000,
+                1.3,
+                'field1'
+            ));
+
+            system.addField(new Field(
+                new Vector(w/2,h/2),
+                0.9,
+                0.5,
+                'field2'
+            ));
+
+            /* Event handlers */
+
+            svg.on("mousemove", function(e) {
+                var p = d3.mouse(this);
+                system.moveField(0,new Vector(p[0],p[1]))
+            });
+
+            /* Animation Loop */
+
+             
+            function loop() {
+              system.update();
+              queue();
+            }
+             
+             
+            function queue() {
+              window.requestAnimationFrame(loop);
+            }
+             
+            loop();
+
+
+    		
+    	</script>
+	</body>
+</html>

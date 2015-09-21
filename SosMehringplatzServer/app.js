@@ -1,21 +1,12 @@
 /*Define dependencies.*/
 
 var express = require('express');
-var socket = require('socket.io');
-
 var app = express();
-
 var http = require('http').Server(app);
-var io = socket(http);
 
-/* configure socket io */
+/* Load Sockets */
 
-io.on('connection', function(socket){
-    console.log('user connected');
-    socket.on('disconnect', function(){
-        console.log('user disconnected');
-    });
-});
+var sockets = require('./sockets')(http);
 
 /* Load Router */
 

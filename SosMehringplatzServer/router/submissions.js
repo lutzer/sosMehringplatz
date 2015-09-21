@@ -6,6 +6,8 @@ var multer = require('multer');
 var config = require('../config.js');
 var submissions = require('../models/submissions');
 
+var events = require('../utils/events.js');
+
 var router = express.Router();
 
 /* configure multer */
@@ -21,14 +23,15 @@ router.get('/',function(req,res){
     submissions.list(function(err,docs) {
         res.send(docs);
     });
+
 });
 
 /*
  * GET /api/submissions/:id
  */ 
 router.get('/:id',function(req,res){
-    submissions.get(req.params.id, function(err,docs) {
-        res.send(docs);
+    submissions.get(req.params.id, function(err,doc) {
+        res.send(doc);
     });
 });
 
@@ -48,21 +51,25 @@ router.post('/', upload.array('files[]'), function (req, res, next) {
 
     //insert in db
     submissions.create(submission, function(err, object) {
+        console.log(err);
+        
         var objectId = object._id;
 
         //create directory in upload folder
-        fs.mkdirSync(config.uploadPath + '/' + objectId);
+        var targetDir = config.uploadPath + '/' + objectId;
+        var exists = fs.existsSync(targetDir);
+        if (!exists)
+            fs.mkdirSync(targetDir);
 
         //copy file to uploads folder
         req.files.forEach(function(file) {
-            var target_path = config.uploadPath + '/' + objectId + '/' + file.originalname;
-            fs.renameSync(file.path,target_path);
+            var targetPath = targetDir + '/' + file.originalname;
+            fs.renameSync(file.path,targetPath);
         });
         console.log('New Submission inserted:');
-        console.log(object);  
 
-        //send new model message over socket
-        //io.sockets.emit('submission', {data: {hallo: 'hallo', hallo2: 'test'}});
+        //send model has been added
+        events.emit('submissions:add',objectId);
     });
 
     

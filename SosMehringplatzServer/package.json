@@ -2,6 +2,7 @@
   "name": "SosMehringplatzServer",
   "version": "0.0.1",
   "dependencies": {
+    "events": "^1.0.2",
     "express": "^4.0.0",
     "multer": "^1.0.0",
     "nedb": "^1.2.0",

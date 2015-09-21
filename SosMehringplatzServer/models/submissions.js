@@ -1,18 +1,22 @@
-var Database = require('./database.js');
+var Database = require('./database');
 
 var Submission = {
 
 	create : function(data,callback) {
-	
-		var submission = {
-			type : data.type || false,
-			content : data.content || false,
-			author : data.author || false,
-			files : data.files || []
-		};
 
 		var db = new Database();
-		db.submissions.insert(submission,callback);
+
+		db.getNextSequence("submissionId", function(insertId) {
+			var submission = {
+				type : data.type || false,
+				content : data.content || false,
+				author : data.author || false,
+				files : data.files || [],
+				_id: insertId
+			};
+
+			db.submissions.insert(submission,callback);
+		});
 	},
 
 	get : function(id,callback) {
