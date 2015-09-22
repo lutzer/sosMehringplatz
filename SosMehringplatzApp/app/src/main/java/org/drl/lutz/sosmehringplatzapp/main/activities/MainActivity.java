@@ -6,6 +6,7 @@ import android.view.View;
 
 import org.drl.lutz.sosmehringplatzapp.R;
 import org.drl.lutz.sosmehringplatzapp.main.datatypes.QuestionType;
+import org.drl.lutz.sosmehringplatzapp.main.datatypes.Submission;
 
 
 public class MainActivity extends FullscreenActivity {
@@ -26,8 +27,12 @@ public class MainActivity extends FullscreenActivity {
     }
 
     public void transitionNext(QuestionType type) {
-        Intent intent = new Intent(this, SelectInputActivity.class);
-        intent.putExtra("type", type);
+        Intent intent = new Intent(this, CaptureImageActivity.class);
+        intent.putExtra("submission", new Submission(type));
         startActivity(intent);
+
+        /*Intent intent = new Intent(this, SelectInputActivity.class);
+        intent.putExtra("type", type);
+        startActivity(intent);*/
     }
 }

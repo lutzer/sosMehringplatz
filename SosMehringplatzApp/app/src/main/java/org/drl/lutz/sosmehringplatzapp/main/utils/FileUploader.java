@@ -32,7 +32,7 @@ public class FileUploader {
 
         RequestParams params = new RequestParams();
         try {
-            params.put("file", submission.file);
+            params.put("file", submission.recording);
             params.put("submission_type",submission.type.toString());
             params.put("submission_author",submission.author);
             params.put("submission_message",submission.text);
@@ -44,7 +44,10 @@ public class FileUploader {
     }
 
     public void deleteFile() {
-        this.submission.file.delete();
+        if (this.submission.recording != null)
+            this.submission.recording.delete();
+        if (this.submission.image != null)
+            this.submission.image.delete();
     }
 
 }

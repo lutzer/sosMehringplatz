@@ -56,28 +56,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/inputButtonVideo"
-                style="@style/roundButton"
-                android:background="@drawable/video_button"
-                android:onClick="onVideoButtonClicked"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/labelVideoInputButton"
-                style="@style/darkLabelText"/>
-
-
-        </LinearLayout>
-
     </LinearLayout>
 
 

@@ -4,4 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="headerSize">200dp</dimen>
     <dimen name="twoButtonLayoutWidth">300dp</dimen>
+    <dimen name="boxWidth">500dp</dimen>
+    <dimen name="boxHeight">300dp</dimen>
+    <dimen name="imageWidth">600dp</dimen>
+    <dimen name="imageHeight">400dp</dimen>
 </resources>

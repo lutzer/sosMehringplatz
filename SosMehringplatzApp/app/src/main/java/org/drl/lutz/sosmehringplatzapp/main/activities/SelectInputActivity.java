@@ -23,7 +23,7 @@ public class SelectInputActivity extends QuestionActivity {
     static final int REQUEST_VIDEO_CAPTURE = 2;
     static final int REQUEST_SOUND_CAPTURE = 3;
 
-    QuestionType type = null;
+    Submission submission;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,8 @@ public class SelectInputActivity extends QuestionActivity {
 
         setIdleCloseTimer(getResources().getInteger(R.integer.idleTime));
 
-        type = (QuestionType)getIntent().getSerializableExtra("type");
+        QuestionType type = (QuestionType)getIntent().getSerializableExtra("type");
+        submission = new Submission(type);
         this.setQuestionType(type);
 
     }
@@ -45,8 +46,8 @@ public class SelectInputActivity extends QuestionActivity {
     public void onTextButtonClicked(View view) {
         this.pauseIdleTimer(true);
 
-        Intent intent = getIntent();
-        intent.setClass(this, TextActivity.class);
+        Intent intent = new Intent(this,TextActivity.class);
+        intent.putExtra("type",submission.type);
         startActivityForResult(intent, REQUEST_TEXT_INPUT);
     }
 
@@ -62,26 +63,12 @@ public class SelectInputActivity extends QuestionActivity {
         }
     }
 
-    // start video app
-    public void onVideoButtonClicked(View view) {
-        this.pauseIdleTimer(true);
-
-        Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-        takeVideoIntent.putExtra("android.intent.extra.durationLimit", 60);
-        takeVideoIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
-
-        if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
-        } else {
-            showAlert("Error", "No Video Recording App found.");
-        }
-    }
-
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == REQUEST_TEXT_INPUT && resultCode == RESULT_OK) {
-            String message = intent.getStringExtra("message");
 
-            Submission submission = new Submission(type,message);
+            String message = intent.getStringExtra("message");
+            submission.setMessage(message);
+
             Intent submitIntent = new Intent(this, SubmitActivity.class);
             submitIntent.putExtra("submission",submission);
             startActivity(submitIntent);

@@ -4,6 +4,7 @@ import android.view.View;
 
 import org.drl.lutz.sosmehringplatzapp.R;
 import org.drl.lutz.sosmehringplatzapp.main.datatypes.QuestionType;
+import org.drl.lutz.sosmehringplatzapp.main.datatypes.Submission;
 
 /**
  * Created by lutz on 17/09/15.

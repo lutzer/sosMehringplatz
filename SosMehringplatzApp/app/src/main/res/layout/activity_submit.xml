@@ -20,6 +20,7 @@
         android:gravity="center">
 
         <LinearLayout
+            android:id="@+id/anonymousButtonLayout"
             android:layout_width="@dimen/twoButtonLayoutWidth"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -45,6 +46,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/faceButtonLayout"
             android:layout_width="@dimen/twoButtonLayoutWidth"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -66,6 +68,31 @@
                 style="@style/labelText"
                 />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/inputNameLayout"
+            android:layout_width="@dimen/twoButtonLayoutWidth"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/inputName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/inputButtonColor"
+                android:hint="@string/inputHintName"
+                />
+
+            <Button
+                android:id="@+id/acceptButton"
+                style="@style/roundButtonSmall"
+                android:background="@drawable/accept_button"
+                android:textColor="@color/inputButtonColor"
+                android:onClick="onNameAcceptClicked"
+                />
 
         </LinearLayout>
 

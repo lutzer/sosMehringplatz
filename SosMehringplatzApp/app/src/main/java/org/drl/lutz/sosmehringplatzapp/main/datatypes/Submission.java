@@ -9,19 +9,14 @@ import java.io.Serializable;
 public class Submission implements Serializable {
 
     public QuestionType type = null;
-    public String author = null;
     public String text = null;
-    public File file = null;
+    public File recording = null;
+
+    public String author = null;
     public File image = null;
 
-    public Submission(QuestionType type,String text) {
+    public Submission(QuestionType type) {
         this.type = type;
-        this.text = text;
-    }
-
-    public Submission(QuestionType type,File file) {
-        this.type = type;
-        this.file = file;
     }
 
     public void setImage(File image) {
@@ -32,4 +27,11 @@ public class Submission implements Serializable {
         this.author = author;
     }
 
+    public void setMessage(String text) {
+        this.text = text;
+    }
+
+    public void setRecording(File file) {
+        this.recording = file;
+    }
 }

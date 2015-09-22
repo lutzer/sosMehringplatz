@@ -43,14 +43,24 @@
         <activity
             android:name=".main.activities.SubmitActivity"
             android:label="@string/title_activity_submit"
-            android:screenOrientation="landscape"
-            android:parentActivityName=".main.activities.SelectInputActivity">
+            android:parentActivityName=".main.activities.SelectInputActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".main.activities.SoundRecorderActivity"
+            android:label="@string/title_activity_sound_recorder"
+            android:parentActivityName=".main.activities.SelectInputActivity"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".main.activities.UploadActivity"
             android:label="@string/title_activity_upload"
             android:parentActivityName=".main.activities.SubmitActivity"
             android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".main.activities.CaptureImageActivity"
+            android:label="@string/title_activity_capture_image" >
         </activity>
     </application>
 

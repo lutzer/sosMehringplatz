@@ -4,7 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="org.drl.lutz.sosmehringplatzapp.main.activities.TextActivity">
+    tools:context="org.drl.lutz.sosmehringplatzapp.main.activities.CaptureImageActivity">
+
 
 
     <LinearLayout
@@ -13,13 +14,12 @@
         android:orientation="horizontal"
         android:gravity="center">
 
-        <EditText
-            android:layout_width="@dimen/boxWidth"
-            android:layout_height="@dimen/boxHeight"
-            android:inputType="textMultiLine"
-            android:id="@+id/editText"
-            android:hint="@string/textEditPlaceholder"
-            style="@style/textField"/>
+        <FrameLayout
+            android:layout_width="@dimen/imageWidth"
+            android:layout_height="@dimen/imageHeight"
+            android:id="@+id/preview"
+            android:onClick="onPreviewClicked"
+            />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -41,8 +41,6 @@
                 />
 
         </LinearLayout>
-
-
 
     </LinearLayout>
 
