@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="uploadWebUrl">http://localhost:8000/api</string>
+    <string name="uploadWebUrl">http://192.168.1.12:3000/api/submissions/</string>
+
     <string name="app_name">SosMehringplatzApp</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_select_input">SelectInputActivity</string>
     <string name="title_activity_text">TextActivity</string>
     <string name="title_activity_upload">UploadActivity</string>
+
     <string name="labelQuestionButton">Frage</string>
     <string name="labelRantButton">Beschwerde</string>
     <string name="labelIdeaButton">Idee</string>
@@ -26,6 +28,10 @@
     <string name="uploadBodyTextFinished">Deine Nachricht wurde abgeschickt!</string>
     <string name="title_activity_sound_recorder">SoundRecorderActivity</string>
     <string name="title_activity_capture_image">CaptureImageActivity</string>
-    <string name="inputHintName">Dein Name</string>
+    <string name="inputHintName">Tippe hier um dein Namen einzugeben.</string>
+    <string name="mainActivityText">Bitte wähle aus, was du beitragen möchtest: eine Frage, eine Beschwerde oder eine Idee.</string>
+    <string name="inputActivityText">Möchtest du deinen Beitrag als Textbotschaft oder Tonaufnahme machen?</string>
+    <string name="recordTimeStart">00:00</string>
+    <string name="soundActivityText">Drücke auf den Mikrofon Button um deine Nachricht aufzunehmen.</string>
 
 </resources>

@@ -72,18 +72,18 @@
 
         <LinearLayout
             android:id="@+id/inputNameLayout"
-            android:layout_width="@dimen/twoButtonLayoutWidth"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:gravity="center"
             android:visibility="gone">
 
             <EditText
                 android:id="@+id/inputName"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/inputLineWidth"
                 android:layout_height="wrap_content"
-                android:textColor="@color/inputButtonColor"
                 android:hint="@string/inputHintName"
+                style="@style/inputSingleLine"
                 />
 
             <Button

@@ -4,12 +4,13 @@
         <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
             <item>
                 <shape android:shape="oval">
-                    <stroke android:width="10dp" android:color="@color/inputButtonColor" />
+                    <stroke
+                        android:width="10dp"
+                        android:color="@color/inputButtonColor"/>
                 </shape>
             </item>
             <item>
-                <bitmap
-                    android:src="@drawable/ic_message_black">
+                <bitmap android:src="@drawable/stop_icon">
                 </bitmap>
             </item>
         </layer-list>

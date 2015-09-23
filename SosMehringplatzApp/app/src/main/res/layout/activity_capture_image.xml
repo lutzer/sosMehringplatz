@@ -4,13 +4,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="org.drl.lutz.sosmehringplatzapp.main.activities.CaptureImageActivity">
+    tools:context="org.drl.lutz.sosmehringplatzapp.main.activities.CaptureImageActivity"
+    android:gravity="center">
 
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <RelativeLayout
+        android:layout_width="@dimen/imageWidth"
+        android:layout_height="@dimen/imageHeight"
         android:orientation="horizontal"
         android:gravity="center">
 
@@ -18,30 +17,55 @@
             android:layout_width="@dimen/imageWidth"
             android:layout_height="@dimen/imageHeight"
             android:id="@+id/preview"
-            android:onClick="onPreviewClicked"
             />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/imageWidth"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_alignParentBottom="true"
+            android:padding="10dp"
+            android:background="@color/imagePreviewControlBg"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                    android:id="@+id/cancelButton"
+                    style="@style/roundButtonSmall"
+                    android:background="@drawable/cancel_button"
+                    android:onClick="onCancelButtonClicked"
+                    android:visibility="invisible"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <Button
+                android:id="@+id/shutterButton"
+                style="@style/roundButtonSmall"
+                android:background="@drawable/shutter_button"
+                android:onClick="onShutterButtonClicked"
+                />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/acceptButton"
                 style="@style/roundButtonSmall"
                 android:background="@drawable/accept_button"
                 android:onClick="onAcceptButtonClicked"
-                />
-
-            <Button
-                android:id="@+id/cancelButton"
-                style="@style/roundButtonSmall"
-                android:background="@drawable/cancel_button"
-                android:onClick="onCancelButtonClicked"
+                android:visibility="invisible"
                 />
 
         </LinearLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

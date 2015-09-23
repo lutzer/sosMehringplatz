@@ -38,13 +38,14 @@
             android:label="@string/title_activity_text"
             android:parentActivityName=".main.activities.SelectInputActivity"
             android:screenOrientation="landscape"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="stateHidden|adjustResize" >
         </activity>
         <activity
             android:name=".main.activities.SubmitActivity"
             android:label="@string/title_activity_submit"
             android:parentActivityName=".main.activities.SelectInputActivity"
-            android:screenOrientation="landscape" >
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
         <activity
             android:name=".main.activities.SoundRecorderActivity"

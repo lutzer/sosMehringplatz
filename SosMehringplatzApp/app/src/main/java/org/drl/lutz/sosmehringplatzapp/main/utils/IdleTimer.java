@@ -36,11 +36,9 @@ public class IdleTimer extends Thread {
         this.reset();
 
         do {
-            //Log.d(TAG, "Application is idle for " + idle + " ms");
             try {
                 Thread.sleep(2000); //check every 2 seconds
             } catch (InterruptedException e) {
-                //Log.d(TAG, "IdleThread interrupted!");
                 stop = true;
             }
 
@@ -53,7 +51,6 @@ public class IdleTimer extends Thread {
             }
         }
         while(!stop);
-        //Log.d(TAG, "Finished IdleThread thread");
     }
 
     public synchronized void reset()

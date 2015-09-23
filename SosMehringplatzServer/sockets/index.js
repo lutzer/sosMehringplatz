@@ -9,7 +9,7 @@ module.exports = function (http) {
 
 	io.on('connection', function(socket){
 
-	    console.log('User connected');
+	    console.log('Socket: User connected');
 
 	    /* Server Events */
 
@@ -18,8 +18,8 @@ module.exports = function (http) {
 		        socket.emit('submissions:added',{data: doc});
 		    });
 	    }
-
-	    events.on('submissions:add', submissionAddHandler);
+	    
+		events.on('submissions:add', submissionAddHandler);
 
 	    /* Event handlers */
 
@@ -38,7 +38,7 @@ module.exports = function (http) {
 	    /* Clean up after disconnect */
 
 	    socket.on('disconnect', function(){
-	        console.log('User disconnected');
+	        console.log('Socket: User disconnected');
 
 	        events.removeListener('submissions:add',submissionAddHandler);
 	    });

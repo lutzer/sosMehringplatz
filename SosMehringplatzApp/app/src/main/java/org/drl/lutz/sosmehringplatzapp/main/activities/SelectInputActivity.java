@@ -16,6 +16,8 @@ import org.drl.lutz.sosmehringplatzapp.R;
 import org.drl.lutz.sosmehringplatzapp.main.datatypes.QuestionType;
 import org.drl.lutz.sosmehringplatzapp.main.datatypes.Submission;
 
+import java.io.File;
+
 public class SelectInputActivity extends QuestionActivity {
 
 
@@ -55,15 +57,15 @@ public class SelectInputActivity extends QuestionActivity {
     public void onSoundButtonClicked(View view) {
         this.pauseIdleTimer(true);
 
-        Intent takeSoundIntent = new Intent(MediaStore.Audio.Media.RECORD_SOUND_ACTION);
-        if (takeSoundIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takeSoundIntent, REQUEST_SOUND_CAPTURE);
-        } else {
-            showAlert("Error", "No Sound Recorder App found.");
-        }
+        Intent intent = new Intent(this,SoundRecorderActivity.class);
+        intent.putExtra("type",submission.type);
+        startActivityForResult(intent, REQUEST_SOUND_CAPTURE);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+
+        this.pauseIdleTimer(false);
+
         if (requestCode == REQUEST_TEXT_INPUT && resultCode == RESULT_OK) {
 
             String message = intent.getStringExtra("message");
@@ -74,12 +76,14 @@ public class SelectInputActivity extends QuestionActivity {
             startActivity(submitIntent);
             finish();
 
-        } else if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
-            Uri videoUri = intent.getData();
-            Log.e("VIDEO", videoUri.toString());
         } else if (requestCode == REQUEST_SOUND_CAPTURE && resultCode == RESULT_OK) {
-            Uri soundUri = intent.getData();
-            Log.e("SOUND", soundUri.toString());
+            File recording = (File)intent.getSerializableExtra("recording");
+            submission.setRecording(recording);
+
+            Intent submitIntent = new Intent(this, SubmitActivity.class);
+            submitIntent.putExtra("submission",submission);
+            startActivity(submitIntent);
+            finish();
         } else {
             //this.showAlert(getResources().getString(R.string.fehler),getResources().getString(R.string.noSubmission));
         }

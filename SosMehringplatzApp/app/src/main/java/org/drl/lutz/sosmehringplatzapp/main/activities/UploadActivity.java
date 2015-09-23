@@ -25,15 +25,13 @@ public class UploadActivity extends QuestionActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
 
-        setIdleCloseTimer(getResources().getInteger(R.integer.idleTime));
-
         //receive data from previous activity
         Submission submission = null;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             submission = (Submission)extras.get("submission");
         } else {
-            showAlert("Error", "No submission made");
+            showAlert("Error", "No submission received from activity");
             return;
         }
 
@@ -48,7 +46,8 @@ public class UploadActivity extends QuestionActivity {
 
         final FileUploader uploader = new FileUploader(getApplicationContext(),submission);
 
-        String uploadUrl = getResources().getString(R.string.UploadWebUrl);
+        //String uploadUrl = getResources().getString(R.string.UploadWebUrl);
+        String uploadUrl = "http://192.168.1.12:3000/api/submissions/";
 
         final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
@@ -57,9 +56,7 @@ public class UploadActivity extends QuestionActivity {
                 @Override
                 public void onSuccess(int i, Header[] headers, byte[] bytes) {
                     ((TextView)findViewById(R.id.bodyText)).setText(R.string.uploadBodyTextFinished);
-                    findViewById(R.id.acceptButton).setEnabled(true);
                     progressBar.setProgress(100);
-                    pauseIdleTimer(false);
 
                     done();
 
@@ -78,10 +75,10 @@ public class UploadActivity extends QuestionActivity {
                 @Override
                 public void onProgress(int position, int length) {
                     progressBar.setProgress((int) (position / (float) length * 100));
+                    Log.e("UPLOAD","progress: "+position+":"+length);
                 }
             });
 
-            pauseIdleTimer(true);
 
         } catch (Exception e) {
             this.showAlert("Error","Error uploading submission: "+e.toString());
@@ -91,13 +88,14 @@ public class UploadActivity extends QuestionActivity {
 
     public void done() {
 
+        //wait for 2,5 seconds, then close activity
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
                 Log.e("TIMER", "finish activity");
                 finish();
             }
-        }, 2000);
+        }, 2500);
 
     }
 }

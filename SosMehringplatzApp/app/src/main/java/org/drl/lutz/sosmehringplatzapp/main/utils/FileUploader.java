@@ -31,14 +31,14 @@ public class FileUploader {
         AsyncHttpClient httpClient = new AsyncHttpClient();
 
         RequestParams params = new RequestParams();
-        try {
-            params.put("file", submission.recording);
-            params.put("submission_type",submission.type.toString());
-            params.put("submission_author",submission.author);
-            params.put("submission_message",submission.text);
-        } catch(FileNotFoundException e) {
-            throw e;
-        }
+
+        params.put("type",submission.type.toString());
+        params.put("content_text",submission.text);
+        if (submission.recording != null)
+            params.put("content_recording", submission.recording);
+        params.put("author_name",submission.author);
+        if (submission.image != null)
+            params.put("author_image", submission.image);
 
         httpClient.post(this.context,urlString,params,handler);
     }

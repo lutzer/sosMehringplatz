@@ -6,7 +6,89 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="org.drl.lutz.sosmehringplatzapp.main.activities.SoundRecorderActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/headerSize"
+        android:text="@string/soundActivityText"
+        style="@style/headerText"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/headerSize"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/recordIcon"
+                android:background="@drawable/record_dot"
+                android:visibility="invisible" />
+
+            <TextView
+                style="@style/recordTimeText"
+                android:id="@+id/recordTimeView"
+                android:text="@string/recordTimeStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/recordButton"
+                style="@style/roundButtonSmall"
+                android:background="@drawable/mic_button"
+                android:onClick="onRecordButtonClicked"
+                android:visibility="visible"
+                />
+
+            <Button
+                android:id="@+id/stopButton"
+                style="@style/roundButtonSmall"
+                android:background="@drawable/stop_button"
+                android:onClick="onStopButtonClicked"
+                android:visibility="gone"
+                />
+
+            <Button
+                android:id="@+id/restartButton"
+                style="@style/roundButtonSmall"
+                android:background="@drawable/restart_button"
+                android:onClick="onRestartButtonClicked"
+                android:visibility="gone"
+                android:layout_margin="80dp"
+                />
+
+            <Button
+                android:id="@+id/acceptButton"
+                style="@style/roundButtonSmall"
+                android:background="@drawable/accept_button"
+                android:onClick="onAcceptButtonClicked"
+                android:visibility="gone"
+                android:layout_margin="80dp"
+                />
+
+
+
+
+        </LinearLayout>
+
+     </LinearLayout>
+
+
 
 </RelativeLayout>

@@ -27,12 +27,9 @@ public class MainActivity extends FullscreenActivity {
     }
 
     public void transitionNext(QuestionType type) {
-        Intent intent = new Intent(this, CaptureImageActivity.class);
-        intent.putExtra("submission", new Submission(type));
-        startActivity(intent);
 
-        /*Intent intent = new Intent(this, SelectInputActivity.class);
+        Intent intent = new Intent(this, SelectInputActivity.class);
         intent.putExtra("type", type);
-        startActivity(intent);*/
+        startActivity(intent);
     }
 }

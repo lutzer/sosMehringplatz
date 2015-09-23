@@ -133,7 +133,6 @@ abstract public class FullscreenActivity extends Activity {
         }
     }
 
-
     @Override
     public void onBackPressed() {
         this.finish();
@@ -141,6 +140,9 @@ abstract public class FullscreenActivity extends Activity {
     }
 
     public void showAlert(final String title,final String message) {
+        if (this.isFinishing())
+            return;
+
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);

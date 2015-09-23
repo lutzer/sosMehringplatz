@@ -4,7 +4,6 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/background</item>
-        <item name="android:textColor">@color/foreground</item>
         <item name="android:textSize">28sp</item>
         <item name="android:fontFamily">sans-serif-thin</item>
         <item name="android:textStyle">normal</item>
@@ -19,11 +18,17 @@
         <item name="android:paddingLeft">60dp</item>
         <item name="android:paddingRight">60dp</item>
         <item name="android:lineSpacingMultiplier">1.3</item>
+        <item name="android:textColor">@color/foreground</item>
     </style>
 
 
     <style name="darkText" parent="normalText">
         <item name="android:textColor">@color/inputButtonColor</item>
+    </style>
+
+    <style name="headerText" parent="darkText">
+        <item name="android:textColor">@color/inputButtonColor</item>
+        <item name="android:gravity">center_horizontal</item>
     </style>
 
 
@@ -47,10 +52,10 @@
         <item name="android:paddingBottom">40dp</item>
     </style>
 
-    <style name="recordTimeText">
-        <item name="android:textSize">200sp</item>
-        <item name="android:fontFamily">sans-serif-thin</item>
-        <item name="android:gravity">center_horizontal</item>
+    <style name="recordTimeText" parent="darkText">
+        <item name="android:textSize">160sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:padding">0dp</item>
     </style>
 
     <!-- BUTTONS & INPUT ELEMENTS -->
@@ -75,18 +80,28 @@
         <item name="android:layout_margin">10dp</item>
     </style>
 
-    <style name="textField">
+    <style name="inputField">
         <item name="android:textSize">12pt</item>
-        <item name="android:background">@color/foreground</item>
-        <item name="android:textColor">@color/background</item>
+    </style>
+
+    <style name="textField" parent="inputField">
+        <item name="android:background">@color/background</item>
+        <item name="android:textColor">@color/foreground</item>
         <item name="android:textColorHint">@color/textHintColor</item>
         <item name="android:layout_margin">20dp</item>
         <item name="android:padding">10dp</item>
         <item name="android:gravity">top</item>
     </style>
 
+    <style name="inputSingleLine" parent="inputField">
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">@color/textHintColor2</item>
+        <item name="android:textColor">@color/inputButtonColor</item>
+    </style>
+
     <style name="progressBar" parent="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal">
         <item name="android:padding">20dp</item>
     </style>
+
 
 </resources>

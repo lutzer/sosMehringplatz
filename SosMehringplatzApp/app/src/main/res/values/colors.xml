@@ -4,7 +4,8 @@
     <color name="background">#222222</color>
     <color name="foreground">#ffffff</color>
     <color name="backgroundLight">#666666</color>
-    <color name="textHintColor">#999999</color>
+    <color name="textHintColor">#bbbbbb</color>
+    <color name="textHintColor2">#ff5e5e5e</color>
 
     <color name="buttonBgColorAccept">#ff009900</color>
     <color name="buttonBgColorReject">#ffff0000</color>
@@ -17,6 +18,8 @@
     <color name="inputButtonColor">#000000</color>
 
     <color name="buttonBgColorDisabled">#32ffffff</color>
+    <color name="imagePreviewControlBg">#64ffffff</color>
+    <color name="recordDotColor">#ff0000</color>
 
 
 </resources>

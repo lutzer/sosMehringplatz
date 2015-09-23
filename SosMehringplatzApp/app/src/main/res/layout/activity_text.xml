@@ -16,22 +16,14 @@
         <EditText
             android:layout_width="@dimen/boxWidth"
             android:layout_height="@dimen/boxHeight"
-            android:inputType="textMultiLine"
             android:id="@+id/editText"
             android:hint="@string/textEditPlaceholder"
             style="@style/textField"/>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/boxHeight"
             android:orientation="vertical">
-
-            <Button
-                android:id="@+id/acceptButton"
-                style="@style/roundButtonSmall"
-                android:background="@drawable/accept_button"
-                android:onClick="onAcceptButtonClicked"
-                />
 
             <Button
                 android:id="@+id/cancelButton"
@@ -40,7 +32,15 @@
                 android:onClick="onCancelButtonClicked"
                 />
 
-        </LinearLayout>
+            <Button
+                android:id="@+id/acceptButton"
+                style="@style/roundButtonSmall"
+                android:background="@drawable/accept_button"
+                android:onClick="onAcceptButtonClicked"
+                android:layout_alignParentBottom="true"
+                />
+
+        </RelativeLayout>
 
 
 

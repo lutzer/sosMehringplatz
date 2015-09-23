@@ -1,0 +1,130 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '--save', 'multiparty' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.36
+4 warn package.json SosMehringplatzServer@0.0.1 No description
+5 warn package.json SosMehringplatzServer@0.0.1 No repository field.
+6 warn package.json SosMehringplatzServer@0.0.1 No README data
+7 warn package.json events@1.0.2 events is also the name of a node core module.
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'multiparty', null ]
+10 verbose cache add name=undefined spec="multiparty" args=["multiparty",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'multiparty',
+11 verbose parsed url   path: 'multiparty',
+11 verbose parsed url   href: 'multiparty' }
+12 silly lockFile 37dfbab2-multiparty multiparty
+13 verbose lock multiparty /Users/lutz/.npm/37dfbab2-multiparty.lock
+14 silly lockFile 37dfbab2-multiparty multiparty
+15 silly lockFile 37dfbab2-multiparty multiparty
+16 verbose addNamed [ 'multiparty', '' ]
+17 verbose addNamed [ null, '*' ]
+18 silly lockFile 971e1512-multiparty multiparty@
+19 verbose lock multiparty@ /Users/lutz/.npm/971e1512-multiparty.lock
+20 silly addNameRange { name: 'multiparty', range: '*', hasData: false }
+21 verbose request where is /multiparty
+22 verbose request registry https://registry.npmjs.org/
+23 verbose request id 07510e174516ef6d
+24 verbose url raw /multiparty
+25 verbose url resolving [ 'https://registry.npmjs.org/', './multiparty' ]
+26 verbose url resolved https://registry.npmjs.org/multiparty
+27 verbose request where is https://registry.npmjs.org/multiparty
+28 info trying registry request attempt 1 at 22:00:59
+29 verbose etag "70OIVXUKP02V941ER7Z5F5JLP"
+30 http GET https://registry.npmjs.org/multiparty
+31 http 200 https://registry.npmjs.org/multiparty
+32 silly registry.get cb [ 200,
+32 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+32 silly registry.get     etag: '"6NO2UUVVYS9VTZ8BAPBRF7HIG"',
+32 silly registry.get     'content-type': 'application/json',
+32 silly registry.get     'cache-control': 'max-age=60',
+32 silly registry.get     'content-length': '46317',
+32 silly registry.get     'accept-ranges': 'bytes',
+32 silly registry.get     date: 'Wed, 23 Sep 2015 20:00:55 GMT',
+32 silly registry.get     via: '1.1 varnish',
+32 silly registry.get     age: '1',
+32 silly registry.get     connection: 'keep-alive',
+32 silly registry.get     'x-served-by': 'cache-ams4120-AMS',
+32 silly registry.get     'x-cache': 'HIT',
+32 silly registry.get     'x-cache-hits': '1',
+32 silly registry.get     'x-timer': 'S1443038455.096910,VS0,VE0',
+32 silly registry.get     vary: 'Accept' } ]
+33 silly addNameRange number 2 { name: 'multiparty', range: '*', hasData: true }
+34 silly addNameRange versions [ 'multiparty',
+34 silly addNameRange   [ '2.0.0',
+34 silly addNameRange     '2.1.0',
+34 silly addNameRange     '2.1.1',
+34 silly addNameRange     '2.1.2',
+34 silly addNameRange     '2.1.3',
+34 silly addNameRange     '2.1.4',
+34 silly addNameRange     '2.1.5',
+34 silly addNameRange     '2.1.6',
+34 silly addNameRange     '2.1.7',
+34 silly addNameRange     '2.1.8',
+34 silly addNameRange     '2.1.9',
+34 silly addNameRange     '2.2.0',
+34 silly addNameRange     '3.0.0',
+34 silly addNameRange     '3.1.0',
+34 silly addNameRange     '3.1.1',
+34 silly addNameRange     '3.1.2',
+34 silly addNameRange     '3.2.0',
+34 silly addNameRange     '3.2.1',
+34 silly addNameRange     '3.2.2',
+34 silly addNameRange     '3.2.3',
+34 silly addNameRange     '3.2.4',
+34 silly addNameRange     '3.2.5',
+34 silly addNameRange     '3.2.6',
+34 silly addNameRange     '3.2.7',
+34 silly addNameRange     '3.2.8',
+34 silly addNameRange     '3.2.9',
+34 silly addNameRange     '3.3.0',
+34 silly addNameRange     '3.2.10',
+34 silly addNameRange     '3.3.1',
+34 silly addNameRange     '3.3.2',
+34 silly addNameRange     '4.0.0',
+34 silly addNameRange     '4.1.0',
+34 silly addNameRange     '4.1.1',
+34 silly addNameRange     '4.1.2' ] ]
+35 verbose addNamed [ 'multiparty', '4.1.2' ]
+36 verbose addNamed [ '4.1.2', '4.1.2' ]
+37 silly lockFile 7124da67-multiparty-4-1-2 multiparty@4.1.2
+38 verbose lock multiparty@4.1.2 /Users/lutz/.npm/7124da67-multiparty-4-1-2.lock
+39 silly lockFile ef5d70d2--multiparty-multiparty-4-1-2-tgz https://registry.npmjs.org/multiparty/-/multiparty-4.1.2.tgz
+40 verbose lock https://registry.npmjs.org/multiparty/-/multiparty-4.1.2.tgz /Users/lutz/.npm/ef5d70d2--multiparty-multiparty-4-1-2-tgz.lock
+41 verbose addRemoteTarball [ 'https://registry.npmjs.org/multiparty/-/multiparty-4.1.2.tgz',
+41 verbose addRemoteTarball   '54f8ec9712052fa1dfd8ec975056c8230d6f2370' ]
+42 info retry fetch attempt 1 at 22:01:00
+43 verbose fetch to= /var/folders/81/jcgz99z54cl70f9kg8whpq4c0000gn/T/npm-24817-32k3k6wf/registry.npmjs.org/multiparty/-/multiparty-4.1.2.tgz
+44 http GET https://registry.npmjs.org/multiparty/-/multiparty-4.1.2.tgz
+45 http 200 https://registry.npmjs.org/multiparty/-/multiparty-4.1.2.tgz
+46 silly lockFile ef5d70d2--multiparty-multiparty-4-1-2-tgz https://registry.npmjs.org/multiparty/-/multiparty-4.1.2.tgz
+47 silly lockFile ef5d70d2--multiparty-multiparty-4-1-2-tgz https://registry.npmjs.org/multiparty/-/multiparty-4.1.2.tgz
+48 silly lockFile 7124da67-multiparty-4-1-2 multiparty@4.1.2
+49 silly lockFile 7124da67-multiparty-4-1-2 multiparty@4.1.2
+50 silly lockFile 971e1512-multiparty multiparty@
+51 silly lockFile 971e1512-multiparty multiparty@
+52 error Error: EACCES, mkdir '/Users/lutz/.npm/multiparty/4.1.2'
+52 error  { [Error: EACCES, mkdir '/Users/lutz/.npm/multiparty/4.1.2']
+52 error   errno: 3,
+52 error   code: 'EACCES',
+52 error   path: '/Users/lutz/.npm/multiparty/4.1.2',
+52 error   parent: 'SosMehringplatzServer' }
+53 error Please try running this command again as root/Administrator.
+54 error System Darwin 13.4.0
+55 error command "node" "/usr/local/bin/npm" "install" "--save" "multiparty"
+56 error cwd /Users/lutz/Projects/sosMehringplatz/SosMehringplatzServer
+57 error node -v v0.10.36
+58 error npm -v 1.4.28
+59 error path /Users/lutz/.npm/multiparty/4.1.2
+60 error code EACCES
+61 error errno 3
+62 error stack Error: EACCES, mkdir '/Users/lutz/.npm/multiparty/4.1.2'
+63 verbose exit [ 3, true ]

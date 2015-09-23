@@ -31,17 +31,16 @@ public class CaptureImageActivity extends QuestionActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capture_image);
 
-
         FrameLayout preview = (FrameLayout) findViewById(R.id.preview);
-
-        //adjust ratio
-        //int h = preview.getHeight();
-        //preview.getLayoutParams().width = (int)(h*4.0/3.0);
 
         //start camera
         mCamera = getCameraInstance();
         mCameraPreview = new CameraPreview(this, mCamera);
         preview.addView(mCameraPreview);
+
+        Camera.Parameters params = mCamera.getParameters();
+        params.setPictureSize(1280, 800);
+        mCamera.setParameters(params);
 
         submission = (Submission)getIntent().getSerializableExtra("submission");
         this.setQuestionType(submission.type);
@@ -85,8 +84,34 @@ public class CaptureImageActivity extends QuestionActivity {
         return mediaFile;
     }
 
-    public void onPreviewClicked(View view) {
+    public void onAcceptButtonClicked(View view) {
+        if (mPictureFile != null)
+            submission.setImage(mPictureFile);
 
+        Intent intent = new Intent();
+        intent.putExtra("file",mPictureFile);
+        setResult(Activity.RESULT_OK,intent);
+        finish();
+    }
+
+    public void onCancelButtonClicked(View view) {
+
+        // restart preview
+        if (mPictureFile != null) {
+            mPictureFile.delete();
+            mPictureFile = null;
+            mCamera.startPreview();
+        }
+
+        findViewById(R.id.acceptButton).setVisibility(View.INVISIBLE);
+        findViewById(R.id.cancelButton).setVisibility(View.INVISIBLE);
+        findViewById(R.id.shutterButton).setVisibility(View.VISIBLE);
+
+        /*setResult(Activity.RESULT_CANCELED);
+        finish();*/
+    }
+
+    public void onShutterButtonClicked(View view) {
         if (mPictureFile != null)
             return;
 
@@ -112,25 +137,9 @@ public class CaptureImageActivity extends QuestionActivity {
                 mPictureFile = picture;
             }
         });
-    }
 
-    public void onAcceptButtonClicked(View view) {
-        if (mPictureFile != null)
-            submission.setImage(mPictureFile);
-
-        Intent intent = new Intent();
-        intent.putExtra("submission",submission);
-        setResult(Activity.RESULT_OK,intent);
-        finish();
-    }
-
-    public void onCancelButtonClicked(View view) {
-
-        // restart preview
-        if (mPictureFile != null) {
-            mPictureFile.delete();
-            mPictureFile = null;
-            mCamera.startPreview();
-        }
+        findViewById(R.id.acceptButton).setVisibility(View.VISIBLE);
+        findViewById(R.id.cancelButton).setVisibility(View.VISIBLE);
+        findViewById(R.id.shutterButton).setVisibility(View.INVISIBLE);
     }
 }

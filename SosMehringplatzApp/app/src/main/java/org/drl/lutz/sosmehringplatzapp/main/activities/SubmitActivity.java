@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.opengl.Visibility;
 import android.provider.MediaStore;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -29,6 +31,20 @@ public class SubmitActivity extends QuestionActivity {
 
         submission = (Submission)getIntent().getSerializableExtra("submission");
         this.setQuestionType(submission.type);
+
+        EditText inputName = (EditText) findViewById(R.id.inputName);
+        inputName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                onUserInteraction();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) { }
+        });
     }
 
     public void onAnonymousButtonClicked(View view) {
@@ -45,7 +61,6 @@ public class SubmitActivity extends QuestionActivity {
 
         findViewById(R.id.inputNameLayout).setVisibility(View.VISIBLE);
 
-
     }
 
     public void onNameAcceptClicked(View view) {
@@ -53,26 +68,26 @@ public class SubmitActivity extends QuestionActivity {
         EditText inputName = (EditText)findViewById(R.id.inputName);
         submission.author = inputName.getText().toString();
 
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        cameraIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
-        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
-        } else {
-            showAlert("Error", "No Photo App found.");
-        }
+        Intent cameraIntent = new Intent(this, CaptureImageActivity.class);
+        cameraIntent.putExtra("submission", submission);
+        startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+            if (resultCode == RESULT_OK) {
 
-            //add image file to submission
-            File image = (File)intent.getSerializableExtra("image");
-            submission.image = image;
+                //add image file to submission
+                File image = (File) intent.getSerializableExtra("file");
+                submission.image = image;
 
-            Intent submitIntent = new Intent(this, UploadActivity.class);
-            submitIntent.putExtra("submission", submission);
-            startActivity(submitIntent);
-            finish();
+                Intent submitIntent = new Intent(this, UploadActivity.class);
+                submitIntent.putExtra("submission", submission);
+                startActivity(submitIntent);
+                finish();
+            } else {
+                this.recreate();
+            }
         }
 
     }

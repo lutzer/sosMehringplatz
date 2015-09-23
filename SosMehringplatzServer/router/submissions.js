@@ -1,20 +1,14 @@
 var express = require('express');
 var fs = require('fs');
 var _ = require('underscore');
-var multer = require('multer');
 
 var config = require('../config.js');
 var submissions = require('../models/submissions');
-
 var events = require('../utils/events.js');
 
 var router = express.Router();
 
-/* configure multer */
-
-var upload = multer({ 
-    dest: config.uploadTmpPath
-});
+var multipart = require('multiparty');
 
 /*
  * GET /api/submissions/
@@ -36,42 +30,80 @@ router.get('/:id',function(req,res){
 });
 
 /*
- * POST /api/submissions/:id
+ * POST /api/submissions/
  */ 
-router.post('/', upload.array('files[]'), function (req, res, next) {
+router.post('/', function (req, res) {
 
-    var submission = {
-        type: req.body.submission_type,
-        content: req.body.submission_content,
-        author: req.body.submission_author,
-        files : _.map(req.files, function(element) {
-            return element.originalname;
-        })
-    };
+    console.log('Received new Submission');
 
-    //insert in db
-    submissions.create(submission, function(err, object) {
-        console.log(err);
-        
-        var objectId = object._id;
+    //parse file uploads
+    var form = new multipart.Form({ uploadDir: config.uploadTmpPath});
+    form.parse(req, function(err, fields, files) {
 
-        //create directory in upload folder
-        var targetDir = config.uploadPath + '/' + objectId;
-        var exists = fs.existsSync(targetDir);
-        if (!exists)
-            fs.mkdirSync(targetDir);
+        //parse data
+        var body;
+        if (!_.isEmpty(req.body))
+            body = req.body;
+        else
+            body = _.mapObject(fields,function(val, key) {
+                return val[0];
+            });
 
-        //copy file to uploads folder
-        req.files.forEach(function(file) {
-            var targetPath = targetDir + '/' + file.originalname;
-            fs.renameSync(file.path,targetPath);
+        if (typeof(files) === 'undefined')
+            files = {}
+
+        //create submission data
+        var submissionData = {
+            type : body.type,
+            author : {
+                name : body.author_name,
+            },
+            content : {
+                text : body.content_text
+            },
+            files : []
+        };
+
+        //insert file names into data object
+        _.mapObject(files, function(val, key) {
+            var filename = val[0].originalFilename;
+            if (key == "content_recording")
+                submissionData.content.recording = filename;
+            else if (key == "author_image")
+                submissionData.author.image = filename;
+            submissionData.files.push(filename);
         });
-        console.log('New Submission inserted:');
 
-        //send model has been added
-        events.emit('submissions:add',objectId);
-    });
+        //insert in db
+        submissions.create(submissionData, function(err, object) {
+            
+            var objectId = object._id;
 
+            if (!_.isEmpty(files)) {
+                 //create directory in upload folder
+                var targetDir = config.uploadPath + '/' + objectId;
+                var exists = fs.existsSync(targetDir);
+                if (!exists)
+                    fs.mkdirSync(targetDir);
+
+                //copy file to uploads folder
+                _.mapObject(files, function(val, key) {
+                    file = val[0];
+                    var targetPath = targetDir + '/' + file.originalFilename;
+                    fs.renameSync(file.path,targetPath);
+                });
+            }
+           
+            console.log('New Submission inserted: '+objectId);
+
+            //send model has been added
+            events.emit('submissions:add',objectId);
+
+            res.writeHead(200);
+            res.end();
+        });
+       
+    }); 
     
 });
 

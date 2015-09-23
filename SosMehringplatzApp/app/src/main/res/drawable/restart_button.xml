@@ -8,8 +8,7 @@
                 </shape>
             </item>
             <item>
-                <bitmap
-                    android:src="@drawable/ic_message_black">
+                <bitmap android:src="@drawable/restart_icon">
                 </bitmap>
             </item>
         </layer-list>
