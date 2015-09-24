@@ -46,8 +46,8 @@ public class UploadActivity extends QuestionActivity {
 
         final FileUploader uploader = new FileUploader(getApplicationContext(),submission);
 
-        //String uploadUrl = getResources().getString(R.string.UploadWebUrl);
-        String uploadUrl = "http://192.168.1.12:3000/api/submissions/";
+        String uploadUrl = getResources().getString(R.string.UploadUrl);
+        //String uploadUrl = "http://192.168.1.12:3000/api/submissions/";
 
         final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
 

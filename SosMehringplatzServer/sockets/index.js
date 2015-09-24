@@ -15,11 +15,11 @@ module.exports = function (http) {
 
 	    function submissionAddHandler(id) {
 	    	submissions.get(id,function(err,doc) {
-		        socket.emit('submissions:added',{data: doc});
+		        socket.emit('submissions:new',{data: doc});
 		    });
 	    }
 	    
-		events.on('submissions:add', submissionAddHandler);
+		events.on('submissions:new', submissionAddHandler);
 
 	    /* Event handlers */
 
@@ -40,7 +40,7 @@ module.exports = function (http) {
 	    socket.on('disconnect', function(){
 	        console.log('Socket: User disconnected');
 
-	        events.removeListener('submissions:add',submissionAddHandler);
+	        events.removeListener('submissions:new',submissionAddHandler);
 	    });
 
 	});

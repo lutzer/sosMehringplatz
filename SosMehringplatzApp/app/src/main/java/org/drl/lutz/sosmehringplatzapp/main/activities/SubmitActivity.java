@@ -86,7 +86,7 @@ public class SubmitActivity extends QuestionActivity {
                 startActivity(submitIntent);
                 finish();
             } else {
-                this.recreate();
+                finish();
             }
         }
 

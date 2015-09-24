@@ -18,7 +18,6 @@ import java.io.File;
 
 public class SoundRecorderActivity extends QuestionActivity {
 
-
     public enum RecorderState {
         INIT, RECORDING, STOPPED
     }
@@ -185,4 +184,11 @@ public class SoundRecorderActivity extends QuestionActivity {
         setResult(Activity.RESULT_OK,intent);
         finish();
     }
+
+
+    public void onCancelButtonClicked(View view) {
+        resetRecording();
+        finish();
+    }
+
 }

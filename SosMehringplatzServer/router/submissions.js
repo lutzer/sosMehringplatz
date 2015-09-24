@@ -97,7 +97,7 @@ router.post('/', function (req, res) {
             console.log('New Submission inserted: '+objectId);
 
             //send model has been added
-            events.emit('submissions:add',objectId);
+            events.emit('submissions:new',objectId);
 
             res.writeHead(200);
             res.end();

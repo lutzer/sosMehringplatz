@@ -5,34 +5,31 @@ function ParticleSystem(svg) {
     this.particles = [];
     this.fields = [];
     this.svg = svg;
-    this.particleCounter = 0;
+
+    this.poppedUpParticle = false;
 };
 
 ParticleSystem.prototype = {
 
     emit : function(particle) {
 
-        particle.id = 'p_' + this.particleCounter;
+        particle.id = 'p_' + particle.id
 
         // add particle
         var el = svg.append("circle")
             .attr('id', particle.id)
             .attr('class', 'particle')
-            .attr("cx", particle.pos.x)
-            .attr("cy", particle.pos.y)
-            .attr("r", particle.rad)
-            .style("fill", colors[this.particleCounter%3]);
         
         particle.el = el;
         this.particles.push(particle);
 
-        this.particleCounter++;
+        //draw particle
+        particle.draw();
     },
 
     addField : function(field) {
 
-        var el = svg.append('circle')
-            .attr('id', field.id)
+        /*var el = svg.append('circle')
             .attr("cx", field.pos.x)
             .attr("cy", field.pos.y)
             .attr('r', 30)
@@ -40,7 +37,7 @@ ParticleSystem.prototype = {
             .style("fill-opacity", 0.2)
             .attr("stroke-width", 0)
 
-        field.el = el;
+        field.el = el;*/
         this.fields.push(field);
     },
 
@@ -50,14 +47,17 @@ ParticleSystem.prototype = {
 
         field.pos = pos;
 
-        field.el
+        //redraw particle
+        /*field.el
             .attr("cx", field.pos.x)
-            .attr("cy", field.pos.y);
+            .attr("cy", field.pos.y)*/
     },
 
     update : function(deltaT) {
 
         var self = this;
+
+        var sqrt2 = Math.sqrt(2);
 
         //apply force
         for (var i=0; i<this.particles.length; i++) {
@@ -72,24 +72,56 @@ ParticleSystem.prototype = {
                     particleFields.push(
                         new Field(
                             self.particles[j].pos,
-                            50,
-                            1.0
+                            -Utils.getCurve(particle.rad + self.particles[j].rad),
+                            1.15
                         )
                     );
             }
-            particle.force(particleFields);
 
-        }
+            particle.applyForces(particleFields);
 
-        //move and draw
-        this.particles.forEach(function(particle) {
-
+            // update particle
+            particle.update();
             particle.move();
 
-            particle.el
-                .attr("cx", particle.pos.x)
-                .attr("cy", particle.pos.y);
-        });
+            //redraw particle
+            particle.draw();
+        }
     },
+
+    openPopup: function(particleIndex, callback) {
+
+        this.closePopup();
+
+        var particle = this.particles[particleIndex];
+        this.poppedUpParticle = particle;
+
+        particle.fixed = true;
+        var timer = setInterval(function() {
+            particle.rad += 10;
+            if (particle.rad >= Config.bigCircleRadius) {
+                particle.rad == Config.bigCircleRadius;
+                clearInterval(timer);
+                callback(particle);
+            }
+        },10);
+    },
+
+    closePopup: function() {
+        if (this.poppedUpParticle) {
+            var particle = this.poppedUpParticle;
+
+            var timer = setInterval(function() {
+                particle.rad -= 10;
+                if (particle.rad <= particle.startRad) {
+                    clearInterval(timer);
+                    particle.rad = particle.startRad;
+                    particle.fixed = false;
+                }
+            },10);
+
+            this.poppedUpParticle = false;
+        }
+    }
 
 };

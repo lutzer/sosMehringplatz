@@ -28,14 +28,13 @@
             android:gravity="center">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                style="@style/distributeEqualLayout"
+                android:gravity="left">
 
                 <Button
                     android:id="@+id/cancelButton"
                     style="@style/roundButtonSmall"
-                    android:background="@drawable/cancel_button"
+                    android:background="@drawable/restart_button"
                     android:onClick="onCancelButtonClicked"
                     android:visibility="invisible"
                     />
@@ -43,9 +42,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
+                style="@style/distributeEqualLayout">
 
                 <Button
                 android:id="@+id/shutterButton"
@@ -56,13 +53,19 @@
 
             </LinearLayout>
 
-            <Button
-                android:id="@+id/acceptButton"
-                style="@style/roundButtonSmall"
-                android:background="@drawable/accept_button"
-                android:onClick="onAcceptButtonClicked"
-                android:visibility="invisible"
-                />
+            <LinearLayout
+                style="@style/distributeEqualLayout"
+                android:gravity="right">
+
+                <Button
+                    android:id="@+id/acceptButton"
+                    style="@style/roundButtonSmall"
+                    android:background="@drawable/accept_button"
+                    android:onClick="onAcceptButtonClicked"
+                    android:visibility="invisible"
+                    />
+
+            </LinearLayout>
 
         </LinearLayout>
 

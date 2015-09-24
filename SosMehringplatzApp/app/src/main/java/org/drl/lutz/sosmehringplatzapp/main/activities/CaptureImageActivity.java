@@ -31,6 +31,8 @@ public class CaptureImageActivity extends QuestionActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capture_image);
 
+        setIdleCloseTimer(getResources().getInteger(R.integer.idleTime));
+
         FrameLayout preview = (FrameLayout) findViewById(R.id.preview);
 
         //start camera

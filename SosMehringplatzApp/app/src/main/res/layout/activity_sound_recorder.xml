@@ -48,40 +48,60 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <Button
-                android:id="@+id/recordButton"
-                style="@style/roundButtonSmall"
-                android:background="@drawable/mic_button"
-                android:onClick="onRecordButtonClicked"
-                android:visibility="visible"
-                />
+            <LinearLayout
+                style="@style/distributeEqualLayout"
+                android:gravity="left">
 
-            <Button
-                android:id="@+id/stopButton"
-                style="@style/roundButtonSmall"
-                android:background="@drawable/stop_button"
-                android:onClick="onStopButtonClicked"
-                android:visibility="gone"
-                />
+                <Button
+                    android:id="@+id/cancelButton"
+                    style="@style/roundButtonSmall"
+                    android:background="@drawable/cancel_button"
+                    android:onClick="onCancelButtonClicked"/>
 
-            <Button
-                android:id="@+id/restartButton"
-                style="@style/roundButtonSmall"
-                android:background="@drawable/restart_button"
-                android:onClick="onRestartButtonClicked"
-                android:visibility="gone"
-                android:layout_margin="80dp"
-                />
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/acceptButton"
-                style="@style/roundButtonSmall"
-                android:background="@drawable/accept_button"
-                android:onClick="onAcceptButtonClicked"
-                android:visibility="gone"
-                android:layout_margin="80dp"
-                />
+            <LinearLayout
+                style="@style/distributeEqualLayout">
 
+                <Button
+                    android:id="@+id/recordButton"
+                    style="@style/roundButtonSmall"
+                    android:background="@drawable/mic_button"
+                    android:onClick="onRecordButtonClicked"
+                    android:visibility="visible"
+                    />
+
+                <Button
+                    android:id="@+id/stopButton"
+                    style="@style/roundButtonSmall"
+                    android:background="@drawable/stop_button"
+                    android:onClick="onStopButtonClicked"
+                    android:visibility="gone"
+                    />
+
+                <Button
+                    android:id="@+id/restartButton"
+                    style="@style/roundButtonSmall"
+                    android:background="@drawable/restart_button"
+                    android:onClick="onRestartButtonClicked"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/distributeEqualLayout"
+                android:gravity="right">
+
+                <Button
+                    android:id="@+id/acceptButton"
+                    style="@style/roundButtonSmall"
+                    android:background="@drawable/accept_button"
+                    android:onClick="onAcceptButtonClicked"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
 
 
 

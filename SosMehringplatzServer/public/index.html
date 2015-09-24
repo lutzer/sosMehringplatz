@@ -20,7 +20,7 @@
 			socket.emit('submissions:list'); 
 		});
 
-		socket.on('submissions:added', function(res) {
+		socket.on('submissions:new', function(res) {
 			addSubmission(res.data);
 		});
 
