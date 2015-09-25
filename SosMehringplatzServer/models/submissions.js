@@ -6,17 +6,15 @@ var Submission = {
 
 		var db = new Database();
 
-		db.getNextSequence("submissionId", function(insertId) {
-			var submission = {
+		var submission = {
 				type : data.type || false,
 				content : data.content || false,
 				author : data.author || false,
 				files : data.files || [],
-				_id: insertId
-			};
+		};
 
-			db.submissions.insert(submission,callback);
-		});
+
+		db.submissions.insert(submission,callback)
 	},
 
 	get : function(id,callback) {
@@ -28,7 +26,14 @@ var Submission = {
 	list : function(callback) {
 
 		var db = new Database();
-		db.submissions.find({},callback);
+		db.submissions.find({}, function(err, cursor) {
+			cursor.toArray(callback);
+		});
+	},
+
+	remove : function(id,callback) {
+		var db = new Database();
+		db.submissions.remove({_id: id},callback);
 	}
 
 }

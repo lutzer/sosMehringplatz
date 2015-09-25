@@ -107,7 +107,7 @@ ParticleSystem.prototype = {
         },10);
     },
 
-    closePopup: function() {
+    closePopup: function(callback) {
         if (this.poppedUpParticle) {
             var particle = this.poppedUpParticle;
 
@@ -117,11 +117,15 @@ ParticleSystem.prototype = {
                     clearInterval(timer);
                     particle.rad = particle.startRad;
                     particle.fixed = false;
+                    if (callback)
+                        callback(true);
                 }
             },10);
 
             this.poppedUpParticle = false;
         }
+        if (callback)
+            callback(false);
     }
 
 };

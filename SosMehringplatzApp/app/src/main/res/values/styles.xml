@@ -21,6 +21,10 @@
         <item name="android:textColor">@color/foreground</item>
     </style>
 
+    <style name="bigText" parent="normalText">
+        <item name="android:textSize">36sp</item>
+    </style>
+
 
     <style name="darkText" parent="normalText">
         <item name="android:textColor">@color/inputButtonColor</item>

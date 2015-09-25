@@ -17,7 +17,6 @@ router.get('/',function(req,res){
     submissions.list(function(err,docs) {
         res.send(docs);
     });
-
 });
 
 /*
@@ -27,6 +26,15 @@ router.get('/:id',function(req,res){
     submissions.get(req.params.id, function(err,doc) {
         res.send(doc);
     });
+});
+
+/*
+ * GET /api/submissions/delete/:id
+ */ 
+router.get('/delete/:id',function(req,res){
+    submissions.remove({_id : req.params.id},function(err) {
+        res.send({message: 'Document with id '+req.params.id+' removed.'});
+    } )
 });
 
 /*
@@ -75,8 +83,10 @@ router.post('/', function (req, res) {
         });
 
         //insert in db
-        submissions.create(submissionData, function(err, object) {
+        submissions.create(submissionData, function(err, docs) {
             
+            object = docs[0];
+
             var objectId = object._id;
 
             if (!_.isEmpty(files)) {

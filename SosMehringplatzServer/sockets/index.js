@@ -11,7 +11,7 @@ module.exports = function (http) {
 
 	    console.log('Socket: User connected');
 
-	    /* Server Events */
+	    // Server Events 
 
 	    function submissionAddHandler(id) {
 	    	submissions.get(id,function(err,doc) {
@@ -21,9 +21,9 @@ module.exports = function (http) {
 	    
 		events.on('submissions:new', submissionAddHandler);
 
-	    /* Event handlers */
+	    // Event handlers
 
-	    socket.on('submissions:list', function() {
+	    socket.on('submissions:list', function(err) {
 	    	submissions.list(function(err,docs) {
 		        socket.emit('submissions:list',{data: docs});
 		    });
@@ -35,7 +35,11 @@ module.exports = function (http) {
 		    });
 	    });
 
-	    /* Clean up after disconnect */
+		socket.on('error', function(err) {
+	    	console.log(err);
+		});
+
+	    // Clean up after disconnect
 
 	    socket.on('disconnect', function(){
 	        console.log('Socket: User disconnected');

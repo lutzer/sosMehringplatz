@@ -10,4 +10,5 @@
     <dimen name="imageWidth">960dp</dimen>
     <dimen name="imageHeight">600dp</dimen>
     <dimen name="inputLineWidth">450dp</dimen>
+    <dimen name="headerSizeUpload">450dp</dimen>
 </resources>

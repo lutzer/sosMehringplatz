@@ -1,0 +1,124 @@
+@font-face {
+    font-family: Titillium;
+    src: url("fonts/TitilliumWeb-Regular.ttf");
+}
+
+body {
+    background-color: #000;
+    margin:0;
+    font-size: 18pt;
+    overflow: hidden;
+    font-family: Titillium;
+}
+
+circle {
+    stroke: #000;
+    stroke-opacity: 0.3;
+}
+
+/* popup */
+
+#popup {
+    position: absolute;
+    color: #000;
+    top: 0px;
+    left: 0px;
+    width:500px;
+    height:500px;
+    display: none;
+}
+
+.circleImage {
+    margin-top:0px;
+    margin-left:0px;
+    width: 500px;
+    height: 500px;
+    border-radius: 250px;
+    -webkit-border-radius: 250px;
+    -moz-border-radius: 250px;
+    background-size: auto 500px;
+    opacity: 0.5;
+}
+
+.popupText {
+    position: absolute;
+    top: 0px;
+    left: 50px;
+    padding: 0 50px 0 50px;
+    margin: 50px 0 50px 0;
+    width: 300px;
+    height: 360px;
+    overflow-y:hidden;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28pt;
+    margin:0px;
+}
+
+p {
+    margin:8px;
+}
+
+.author {
+    text-align: right;
+    font-style: italic;
+}
+
+.image {
+    text-align: center;
+    padding-top: 80px;
+    height: 150px;
+}
+
+.image img {
+    width: 100px;
+}
+
+/* animations */
+
+#flash-overlay {
+    position: absolute;
+    background-color: #fff;
+    top:0px;
+    left:0px;
+    height:100%;
+    width:100%;
+    display:none;
+}
+
+.flash {
+    animation-name: fadeInFromNone;
+    animation-duration: 0.25s; 
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeInFromNone {
+    0% {
+        display:none; 
+        opacity: 0;
+    }
+
+    1% {
+        display: block ; 
+        opacity: 0;
+    }
+
+    50% {
+        display: block ; 
+        opacity: 1;
+    }
+
+    99% {
+        display: block ; 
+        opacity: 0;
+    }
+
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}

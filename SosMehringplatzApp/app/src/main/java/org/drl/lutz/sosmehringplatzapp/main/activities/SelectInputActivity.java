@@ -90,4 +90,7 @@ public class SelectInputActivity extends QuestionActivity {
 
     }
 
+    public void onCancelButtonClicked(View view) {
+        finish();
+    }
 }

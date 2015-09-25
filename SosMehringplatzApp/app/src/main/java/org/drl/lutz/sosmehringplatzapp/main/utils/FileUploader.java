@@ -43,7 +43,7 @@ public class FileUploader {
         httpClient.post(this.context,urlString,params,handler);
     }
 
-    public void deleteFile() {
+    public void deleteFiles() {
         if (this.submission.recording != null)
             this.submission.recording.delete();
         if (this.submission.image != null)

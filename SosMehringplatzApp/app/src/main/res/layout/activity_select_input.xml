@@ -12,6 +12,15 @@
         android:text="@string/inputActivityText"
         style="@style/headerText"/>
 
+    <Button
+        android:id="@+id/cancelButton"
+        style="@style/roundButtonSmall"
+        android:background="@drawable/cancel_button"
+        android:onClick="onCancelButtonClicked"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="80dp"/>
+
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

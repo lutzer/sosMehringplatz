@@ -5,15 +5,15 @@
     <color name="foreground">#ffffff</color>
     <color name="backgroundLight">#666666</color>
     <color name="textHintColor">#bbbbbb</color>
-    <color name="textHintColor2">#ff5e5e5e</color>
+    <color name="textHintColor2">#ff2d2d2d</color>
 
     <color name="buttonBgColorAccept">#ff009900</color>
     <color name="buttonBgColorReject">#ffff0000</color>
     <color name="buttonBgColorAction">#ffffcc22</color>
 
-    <color name="bgColorQuestion">#ffffcc22</color>
-    <color name="bgColorRant">#ff0000</color>
-    <color name="bgColorIdea">#ff009900</color>
+    <color name="bgColorQuestion">#FFFF66</color>
+    <color name="bgColorRant">#fd693c</color>
+    <color name="bgColorIdea">#66FF66</color>
 
     <color name="inputButtonColor">#000000</color>
 

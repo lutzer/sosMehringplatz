@@ -5,8 +5,7 @@ var Config = {
 	
 	uploadPath : __dirname + "/public/uploads",
 	uploadTmpPath : __dirname + "/tmp",
-	databaseFile : __dirname + "/data/submissions.db",
-	databaseCounterFile: __dirname + "/data/counters.db"
+	databaseFile : __dirname + "/data",
 
 };
 

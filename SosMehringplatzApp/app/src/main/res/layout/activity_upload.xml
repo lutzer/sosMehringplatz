@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
 
-    <TextView
-        android:id="@+id/bodyText"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/headerSize"
-        android:text="@string/uploadBodyText"
-        style="@style/darkText"
-        android:gravity="center"/>
+        android:layout_height="@dimen/headerSizeUpload"
+        android:gravity="center_horizontal">
+
+        <View
+            android:id="@+id/flyingBall"
+            android:layout_height="150dp"
+            android:layout_width="150dp"
+            android:background="@drawable/question_dot"
+            android:layout_alignParentBottom="true"
+            ></View>
+
+    </RelativeLayout>
+
+
+
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/layout"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/headerSize"
+        android:layout_marginTop="@dimen/headerSizeUpload"
         android:gravity="center">
+
+        <TextView
+            android:id="@+id/bodyText"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/headerSize"
+            android:text="@string/uploadBodyText"
+            style="@style/bigText"
+            android:gravity="center"/>
 
 
         <ProgressBar

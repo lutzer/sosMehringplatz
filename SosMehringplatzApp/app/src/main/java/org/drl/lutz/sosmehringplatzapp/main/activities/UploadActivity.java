@@ -1,12 +1,19 @@
 package org.drl.lutz.sosmehringplatzapp.main.activities;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.drl.lutz.sosmehringplatzapp.R;
+import org.drl.lutz.sosmehringplatzapp.main.datatypes.QuestionType;
 import org.drl.lutz.sosmehringplatzapp.main.datatypes.Submission;
 import org.drl.lutz.sosmehringplatzapp.main.utils.FileUploader;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -18,6 +25,8 @@ import java.util.TimerTask;
 
 
 public class UploadActivity extends QuestionActivity {
+
+    View flyingBall;
 
 
     @Override
@@ -35,7 +44,14 @@ public class UploadActivity extends QuestionActivity {
             return;
         }
 
-        this.setQuestionType(submission.type);
+        flyingBall = findViewById(R.id.flyingBall);
+
+        if (submission.type == QuestionType.IDEA)
+            flyingBall.setBackground(getResources().getDrawable(R.drawable.idea_dot));
+        else if (submission.type == QuestionType.QUESTION)
+            flyingBall.setBackground(getResources().getDrawable(R.drawable.question_dot));
+        else
+            flyingBall.setBackground(getResources().getDrawable(R.drawable.rant_dot));
 
         //start upload to web server automatically
         uploadSubmission(submission);
@@ -58,10 +74,12 @@ public class UploadActivity extends QuestionActivity {
                     ((TextView)findViewById(R.id.bodyText)).setText(R.string.uploadBodyTextFinished);
                     progressBar.setProgress(100);
 
+                    final Animation ballAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.flying_ball);
+                    flyingBall.startAnimation(ballAnimation);
+
                     done();
 
-                    //delete file after succesfull upload
-                    //uploader.deleteFile();
+                    uploader.deleteFiles();
                 }
 
                 @Override
@@ -95,7 +113,7 @@ public class UploadActivity extends QuestionActivity {
                 Log.e("TIMER", "finish activity");
                 finish();
             }
-        }, 2500);
+        }, 4000);
 
     }
 }
