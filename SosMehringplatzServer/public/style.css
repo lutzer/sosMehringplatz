@@ -6,9 +6,89 @@
 body {
     background-color: #000;
     margin:0;
-    font-size: 18pt;
-    overflow: hidden;
+    overflow-x: none;
+    overflow-y: auto;
     font-family: Titillium;
+    color:#fff;
+    font-size:14pt;
+}
+
+a {
+    color:#fff;
+    text-decoration: none;
+    font-size: 12pt;
+}
+
+a:hover {
+    color:#FD693C;
+}
+
+.page {
+    overflow:hidden;
+    width:100%;
+}
+
+.content {  
+    padding:20px;
+}
+
+#about {
+    background-color: #fff;
+    color:#000;
+}
+
+#manifest {
+    background-color: #000;
+    color:#fff;
+}
+
+#popupContainer {
+    position:absolute;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.header {
+    position: absolute;
+    top:0px;
+    color: #fff;
+    padding:20px;
+}
+
+.header h1 {
+    margin:0px;
+}
+
+.footer {
+    position: absolute;
+    bottom:0px;
+    padding:20px;
+}
+
+.footer img {
+    width: 600px;
+}
+
+h1 {
+    text-align: left;
+    font-size: 20pt;
+}
+
+.gray {
+    color: #777;
+    margin:0px;
+}
+
+/* svg canvas */
+
+#svg {
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    right: 0px;
 }
 
 circle {
@@ -16,16 +96,25 @@ circle {
     stroke-opacity: 0.3;
 }
 
+.particle {
+    cursor: pointer;
+}
+
+.hover {
+    fill: #fff !important;
+}
+
 /* popup */
 
 #popup {
-    position: absolute;
+    position: relative;
     color: #000;
     top: 0px;
     left: 0px;
     width:500px;
     height:500px;
     display: none;
+    pointer-events: none;
 }
 
 .circleImage {
@@ -51,28 +140,29 @@ circle {
     overflow-y:hidden;
 }
 
-h1 {
+#popup h1 {
     text-align: center;
     font-size: 28pt;
     margin:0px;
 }
 
-p {
+#popup p {
     margin:8px;
+    color:#000;
 }
 
-.author {
+#popup .author {
     text-align: right;
     font-style: italic;
 }
 
-.image {
+#popup .image {
     text-align: center;
     padding-top: 80px;
     height: 150px;
 }
 
-.image img {
+#popup .image img {
     width: 100px;
 }
 
@@ -121,4 +211,94 @@ p {
         display: none;
         opacity: 0;
     }
+}
+
+/* about page */
+
+.images {
+    text-align: center;
+}
+
+.images img {
+    height:260px;
+}
+
+.text {
+    font-size: 12pt;
+    padding:20px;
+    color:#ccc;
+    -webkit-column-width: 350px; /* Chrome, Safari, Opera */
+    -moz-column-width: 350px; /* Firefox */
+    column-width: 350px;
+}
+
+.black {
+    color: #333;
+}
+
+.text p {
+    padding-top:0px;
+    padding-bottom:20px;
+    margin:0px;
+}
+
+/* manifest page */
+
+.submission-list {
+    overflow:none;
+}
+
+.submission p {
+    position: relative;
+    font-size: 20pt;
+    height:250px;
+    top: 45px;
+    padding:10px;
+}
+
+.submission.left p {
+}
+
+.submission.right p {
+    text-align:right;
+}
+
+.circle {
+    width:200px;
+    height:200px;
+    border-radius: 100px;
+    margin:20px;
+}
+
+.circle img {
+    width:192px;
+    height:192px;
+    border-radius:100px;
+    padding:4px;
+}
+
+.submission.right .circle {
+    float:right;
+}
+
+.submission.left .circle {
+    float:left;
+}
+
+.yellow {
+    background-color: #FFFF66;
+}
+
+.red {
+    background-color: #fd693c;
+}
+
+.green {
+    background-color: #66FF66;
+}
+
+/* helpers */
+
+.avoid-clicks {
+  pointer-events: none;
 }

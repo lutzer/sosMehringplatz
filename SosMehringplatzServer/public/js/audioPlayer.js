@@ -10,7 +10,7 @@ var AudioPlayer = function(file,endListener) {
 AudioPlayer.prototype.stop = function() {
 	if (this.audio) {
 	    this.audio.pause();
-	    this.audio.removeEventListener(this.listener);
+	    this.audio.removeEventListener('ended',this.listener);
 	    this.audio = null
 	}
 };

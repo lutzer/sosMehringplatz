@@ -10,6 +10,7 @@ function Particle(options) {
 
     this.fixed = false;
     this.startRad = this.rad;
+    this.hovered = false
 };
 
 Particle.prototype = { 
@@ -18,6 +19,10 @@ Particle.prototype = {
 
         // Add our current velocity to our position
         this.pos.add(this.vel);
+    },
+
+    hovered : function() {
+        console.log("bla");
     },
 
     //updates the current velocity
@@ -37,12 +42,13 @@ Particle.prototype = {
 
     draw : function() {
 
-        if (this.el)
+        if (this.el) {
             this.el
                 .attr("cx", this.pos.x)
                 .attr("cy", this.pos.y)
                 .attr("r", this.rad)
                 .style("fill", colors[Utils.typeToInt(this.data.type)]);
+        }
     },
 
     getNextPos : function() {

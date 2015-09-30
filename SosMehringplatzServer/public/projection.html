@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+	<head>
+	<title>Test Client</title>
+	<script src="libs/jquery-2.1.4.min.js"></script>
+	<script src="libs/socket.io.js"></script>
+	<script src="libs/d3.min.js"></script>
+    <script src="libs/underscore-min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/vector.js"></script>
+    <script src="js/field.js"></script>
+    <script src="js/particle.js"></script>
+    <script src="js/particleSystem.js"></script>
+    <script src="js/audioPlayer.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css"></link>
+	<script type="html/template" id='popupTemplate'>
+        <% if (author.image) { %>
+        <div class="circleImage" style="background-image:url(<%= path+author.image %>)"></div>
+        <% } %>
+        <div class="popupText">
+            <h1><%= typeName %></h1> 
+            <p><%= content.text %></p>
+            <% if (content.recording) { %>
+            <p class="image"><img src="images/speaker.png"/></p>
+            <% } %>
+            <% if (author.name) { %>
+            <p class="author">von <%= author.name %></p>
+            <% } %>
+        </div>
+    </script>
+	</head>
+	<body>
+        <div class="page">
+            <div id="svg">
+            </div>
+            <div id="popup">
+            </div>
+            <div id="flash-overlay" class="flash">
+            </div>
+        </div>
+    	<script>
+
+            /*  vars */
+
+            var w = window.innerWidth,
+                h = window.innerHeight;
+                colors = ['#FFFF66','#66FF66','#fd693c']
+
+            var popupTimer = null;
+            var popupTemplate = _.template($("#popupTemplate").html());
+
+            /* Set up particle system */
+
+            var system = new ParticleSystem(svg);
+            // add center of gravity
+            system.addField(new Field(
+                new Vector(w/2,h/2),
+                2,
+                0.1
+            ));
+            system.addField(new Field(
+                new Vector(w/2,h/2),
+                -10,
+                0.8,
+                'plateau'
+            ));
+
+             /* Set up audioplayer */
+
+            var audioPlayer = null;
+
+            /* Set up Canvas */
+
+            var svg = d3.select("#svg").append("svg:svg")
+                .attr("width", w)
+                .attr("height", h);
+
+            
+            /* Event handlers */
+
+            function onResize() {
+                w = $('body').width();
+                h = window.innerHeight;
+
+                svg
+                .attr("width", w)
+                .attr("height", h);
+
+                $('.page')
+                    .width(w)
+                    .height(h);
+
+                system.moveField(0,new Vector(w/2,h/2));
+                system.moveField(1,new Vector(w/2,h/2));
+            }
+
+            $(window).on('resize',onResize);
+
+            $( document ).ready(function() {
+                onResize();
+            });
+            
+            /* start popup loop on click */
+
+            svg.on("click", function() {
+                console.log('clicked')
+                flash();
+            });
+
+            /* Animation Loop */
+             
+            function loop() {
+                system.update();
+                queue();
+            }
+             
+             
+            function queue() {
+                window.requestAnimationFrame(loop);
+            }
+             
+            loop();
+
+            /* SUBMISSION FUNCTIONS */
+
+            function popupSubmission(id,closeCallback) {
+
+                system.openPopup(id,function(particle) {
+
+                    var submission = particle.data;
+
+                    var div = $('#popup');
+
+                    //open div popup
+                    div.css({left: particle.pos.x - div.width()/2, top: particle.pos.y - div.height()/2})
+                    div.html(popupTemplate(particle.data));
+                    div.show();
+
+                    if (submission.content.recording) {
+                        audioPlayer = new AudioPlayer(submission.path+submission.content.recording, function() {
+                            closePopup(closeCallback);
+                        });
+                    } else {
+                        setTimeout(function() {
+                            closePopup(closeCallback);
+                        },Config.popupShowTime)
+                    }
+                });
+            };
+
+            function closePopup(callback) {
+                var div = $('#popup');
+                div.hide();
+                if (audioPlayer) {
+                    audioPlayer.stop();
+                    audioPlayer = null;
+                }
+                system.closePopup(callback);
+            };
+
+            function addSubmission(submission,fromEverywhere) {
+
+                var y = 0;
+                if (fromEverywhere)
+                    var y = Math.random()*h;
+
+                //attach path
+                submission.path = Config.uploadFolder+'/'+submission._id+'/';
+                submission.typeName = Utils.convertType(submission.type);
+
+                system.emit(new Particle({
+                    position: new Vector(Math.random()*w,y),
+                    radius: 15 + Math.random()*15,
+                    id: submission._id,
+                    data: submission
+                }));
+            };
+
+            function addNewSubmission(submission) {
+
+                setTimeout(function() {
+                    flash();
+                    addSubmission(submission);
+                },2000) //add after 2 seconds
+            };
+
+            /* popup loop */
+
+            function popupLoop(i) {
+
+                if (!i) {
+                    var n = system.particles.length;
+                    i = Math.floor(Math.random()*n);
+                }
+
+                // wait, then open submission
+                popupTimer = setTimeout(function() {
+                    popupSubmission(i,function() {
+                        popupLoop();
+                        popupTimer = null;
+                    });
+                },Config.intervallBetweenPopups);
+                
+            }
+
+            /* drawing functions */
+
+            function flash() {
+                $('#flash-overlay').show();
+                setTimeout(function() {
+                    $('#flash-overlay').hide();
+                },500);
+            }
+
+            /* SERVER COMMUNICATION */
+
+            var socket = io();
+            socket.on('connect', function() {
+                console.log('socket connected');
+                //get initial list
+                socket.emit('submissions:list'); 
+            });
+
+            socket.on('submissions:new', function(res) {
+                console.log('new submission received');
+                console.log(res.data);
+                addNewSubmission(res.data);
+            });
+
+            // only load the initial list once
+            socket.once('submissions:list', function(res) {
+                res.data.forEach( function(elem) {
+                    addSubmission(elem,true);
+                });
+                // start popupLoop
+                popupLoop();
+            });
+
+    		
+    	</script>
+	</body>
+</html>

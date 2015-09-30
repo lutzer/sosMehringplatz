@@ -13,12 +13,16 @@ ParticleSystem.prototype = {
 
     emit : function(particle) {
 
+        var self = this;
+
         particle.id = 'p_' + particle.id
 
         // add particle
         var el = svg.append("circle")
             .attr('id', particle.id)
             .attr('class', 'particle')
+            .on("mouseover", self.onMouseEnter)
+            .on("mouseleave", self.onMouseLeave);
         
         particle.el = el;
         this.particles.push(particle);
@@ -28,16 +32,6 @@ ParticleSystem.prototype = {
     },
 
     addField : function(field) {
-
-        /*var el = svg.append('circle')
-            .attr("cx", field.pos.x)
-            .attr("cy", field.pos.y)
-            .attr('r', 30)
-            .style("fill", field.mass < 0 ? "#ff0000" : "#00ff00")
-            .style("fill-opacity", 0.2)
-            .attr("stroke-width", 0)
-
-        field.el = el;*/
         this.fields.push(field);
     },
 
@@ -89,9 +83,37 @@ ParticleSystem.prototype = {
         }
     },
 
+    // check if there is a particle at the pointed location and return its index
+    findParticle: function(x,y) {
+
+
+        var mousePos = new Vector(x,y);
+
+        for (var i=0; i<this.particles.length; i++) {
+            var particlePos = this.particles[i].pos;
+            var particleRad = this.particles[i].rad;
+
+            if (mousePos.distanceTo(particlePos) < particleRad)
+                return i;
+        }
+
+        return false;
+    },
+
+    onMouseEnter: function() {
+
+        //clear all others
+        $(this).attr('class','particle hover');
+    },
+
+    onMouseLeave: function() {
+        $(this).attr('class','particle');
+    },
+
     openPopup: function(particleIndex, callback) {
 
-        this.closePopup();
+        if (this.poppedUpParticle)
+            this.closePopup(this.poppedUpParticle);
 
         var particle = this.particles[particleIndex];
         this.poppedUpParticle = particle;
@@ -100,32 +122,28 @@ ParticleSystem.prototype = {
         var timer = setInterval(function() {
             particle.rad += 10;
             if (particle.rad >= Config.bigCircleRadius) {
-                particle.rad == Config.bigCircleRadius;
+                particle.rad = Config.bigCircleRadius;
                 clearInterval(timer);
                 callback(particle);
             }
         },10);
     },
 
-    closePopup: function(callback) {
-        if (this.poppedUpParticle) {
-            var particle = this.poppedUpParticle;
+    closePopup: function(callback) {;
+        if (!this.poppedUpParticle)
+            return;
 
-            var timer = setInterval(function() {
-                particle.rad -= 10;
-                if (particle.rad <= particle.startRad) {
-                    clearInterval(timer);
-                    particle.rad = particle.startRad;
-                    particle.fixed = false;
-                    if (callback)
-                        callback(true);
-                }
-            },10);
-
-            this.poppedUpParticle = false;
-        }
-        if (callback)
-            callback(false);
+        particle = this.poppedUpParticle;
+        particle.fixed = false;
+        var timer = setInterval(function() {
+            particle.rad -= 10;
+            if (particle.rad <= particle.startRad) {
+                clearInterval(timer);
+                particle.rad = particle.startRad;
+                if (typeof(callback) === 'function')
+                    callback();
+            }
+        },10);
     }
 
 };

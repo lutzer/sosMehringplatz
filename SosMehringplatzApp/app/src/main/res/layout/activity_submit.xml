@@ -17,12 +17,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/headerSize"
-        android:gravity="center">
+        android:gravity="center_horizontal">
 
         <LinearLayout
             android:id="@+id/anonymousButtonLayout"
             android:layout_width="@dimen/twoButtonLayoutWidth"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
 
@@ -48,7 +48,7 @@
         <LinearLayout
             android:id="@+id/faceButtonLayout"
             android:layout_width="@dimen/twoButtonLayoutWidth"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center">
 
