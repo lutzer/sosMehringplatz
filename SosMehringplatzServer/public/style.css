@@ -38,7 +38,7 @@ a:hover {
 }
 
 #manifest {
-    background-color: #000;
+    background-color: #212121;
     color:#fff;
 }
 
@@ -54,7 +54,18 @@ a:hover {
     position: absolute;
     top:0px;
     color: #fff;
+}
+
+.header .title {
     padding:20px;
+    float:left;
+}
+
+.links {
+    position:absolute;
+    padding:20px;
+    right:0px;
+    text-align: right;
 }
 
 .header h1 {
@@ -216,7 +227,8 @@ circle {
 /* about page */
 
 .images {
-    text-align: center;
+    /*text-align: center;*/
+    padding:20px;
 }
 
 .images img {
@@ -227,9 +239,10 @@ circle {
     font-size: 12pt;
     padding:20px;
     color:#ccc;
-    -webkit-column-width: 350px; /* Chrome, Safari, Opera */
-    -moz-column-width: 350px; /* Firefox */
-    column-width: 350px;
+    /*-webkit-column-width: 350px;
+    -moz-column-width: 350px;
+    column-width: 350px;*/
+    min-height:300px;
 }
 
 .black {
@@ -237,8 +250,7 @@ circle {
 }
 
 .text p {
-    padding-top:0px;
-    padding-bottom:20px;
+    padding:0 0 20px 0;
     margin:0px;
 }
 
@@ -256,10 +268,20 @@ circle {
     padding:10px;
 }
 
-.submission.left p {
+.submission p:before {
+    content: "»";
+    padding-right:2px;
 }
 
-.submission.right p {
+.submission p:after {
+    content: "«";
+    padding-left:2px;
+}
+
+.submission:nth-child(even) p {
+}
+
+.submission:nth-child(odd) p {
     text-align:right;
 }
 
@@ -277,11 +299,11 @@ circle {
     padding:4px;
 }
 
-.submission.right .circle {
+.submission:nth-child(odd) .circle {
     float:right;
 }
 
-.submission.left .circle {
+.submission:nth-child(even) .circle {
     float:left;
 }
 

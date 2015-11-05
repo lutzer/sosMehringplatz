@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+	<head>
+	<title>Admin - Mehringplatz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <script src="libs/underscore-min.js"></script>
+    <script src="libs/jquery-2.1.4.min.js"></script>
+	<script src="libs/socket.io.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/audioPlayer.js"></script>
+    <script type="html/template" id='itemTemplate'>
+        <div id="s<%= id %>">
+        	<h2><%= id %>: <%= name %></h2>
+        	<p><%= text %></p>
+        	<% if (image) { %>
+        	<p><img src="<%= image %>" style="height: 100px"/></p>
+        	<% } %>
+            <% if (audio) { %>
+        	   <button onClick="onPlayButtonClick('<%= audio %>')" >Play</button>
+            <% } %>
+        	<button onClick="onDeleteButtonClick(<%= id %>)" >Delete</button>
+        </div>
+    </script>
+	</head>
+	<body>
+        <div class="content">
+            <h1>SUBMISSIONS</h1>
+            <div id="submission-list">
+            	<!-- submission items goes here -->
+            </div>
+        </div>
+    	<script>
+
+    		var itemTemplate = _.template($("#itemTemplate").html());
+
+            var audioPlayer = null;
+
+            $( document ).ready(function() {
+                loadData();
+            });
+
+
+            function addSubmission(submission,fromEverywhere) {
+
+                data = {
+                	id : submission._id,
+                	name : submission.author.name || 'no name',
+                	image : submission.author.image || false,
+                	text : submission.content.text || 'no text',
+                    audio : submission.content.recording || false
+                }
+
+                //attach path
+               	path = Config.uploadFolder+'/'+submission._id+'/';
+                if (data.image != false)
+                	data.image = path + data.image;
+                if (data.audio)
+                    data.audio = path + data.audio;
+
+
+                $('#submission-list').prepend(itemTemplate(data));
+
+            };
+
+            function addNewSubmission(submission) {
+                addSubmission(submission,false);
+            };
+
+            function onDeleteButtonClick(id) {
+            	$.getJSON('api/submissions/delete/'+id, data, function() {
+            		//on success
+            		$('#s'+id).remove();
+            	});
+            	
+            };
+
+            function onPlayButtonClick(file) {
+
+                if (audioPlayer)
+                    audioPlayer.stop();
+                
+                audioPlayer = new AudioPlayer(file)
+            };
+
+            function loadData() {
+                $.getJSON( 'api/submissions', null, function(data) {
+                    data.forEach( function(elem) {
+                        addSubmission(elem,true);
+                    });
+                } )
+            };
+
+            /* SERVER COMMUNICATION */
+
+            var socket = io('http://localhost:8081');
+
+            socket.on('submissions:new', function(res) {
+                console.log('new submission received');
+                console.log(res.data);
+                addNewSubmission(res.data);
+            });
+
+    		
+    	</script>
+	</body>
+</html>

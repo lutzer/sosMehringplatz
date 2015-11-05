@@ -1,14 +1,13 @@
 var express = require('express');
 var fs = require('fs');
 var _ = require('underscore');
+var multipart = require('multiparty');
 
 var config = require('../config.js');
 var submissions = require('../models/submissions');
 var events = require('../utils/events.js');
 
 var router = express.Router();
-
-var multipart = require('multiparty');
 
 /*
  * GET /api/submissions/
@@ -30,11 +29,12 @@ router.get('/:id',function(req,res){
 
 /*
  * GET /api/submissions/delete/:id
+ * requires auth
  */ 
 router.get('/delete/:id',function(req,res){
     submissions.remove({_id : req.params.id},function(err) {
         res.send({message: 'Document with id '+req.params.id+' removed.'});
-    } )
+    });
 });
 
 /*
@@ -84,6 +84,8 @@ router.post('/', function (req, res) {
 
         //insert in db
         submissions.create(submissionData, function(err, docs) {
+
+            console.log(submissionData);
             
             object = docs[0];
 

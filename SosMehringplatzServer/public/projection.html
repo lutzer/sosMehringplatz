@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-	<title>Test Client</title>
+	<title>Projection</title>
 	<script src="libs/jquery-2.1.4.min.js"></script>
 	<script src="libs/socket.io.js"></script>
 	<script src="libs/d3.min.js"></script>
@@ -138,8 +138,17 @@
                     div.show();
 
                     if (submission.content.recording) {
-                        audioPlayer = new AudioPlayer(submission.path+submission.content.recording, function() {
+                        audioPlayer = new AudioPlayer(submission.path+submission.content.recording, 
+                        //on stop
+                        function() {
                             closePopup(closeCallback);
+                        },
+                        //on error
+                        function() {
+                            console.log('error playback file')
+                            setTimeout(function() {
+                                closePopup(closeCallback);
+                            },500);
                         });
                     } else {
                         setTimeout(function() {
@@ -179,10 +188,11 @@
 
             function addNewSubmission(submission) {
 
+                //add after 2 seconds
                 setTimeout(function() {
                     flash();
                     addSubmission(submission);
-                },2000) //add after 2 seconds
+                },2000) 
             };
 
             /* popup loop */
@@ -215,7 +225,7 @@
 
             /* SERVER COMMUNICATION */
 
-            var socket = io();
+            var socket = io('http://localhost:8081');
             socket.on('connect', function() {
                 console.log('socket connected');
                 //get initial list

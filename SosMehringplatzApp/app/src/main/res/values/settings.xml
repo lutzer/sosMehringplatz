@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="idleTime">90000</integer>
-    <string name="UploadUrl">http://192.168.72.3:3000/api/submissions/</string>
+    <string name="UploadUrl">http://drl.lu-re.de/mehringplatz/api/submissions/</string>
 </resources>

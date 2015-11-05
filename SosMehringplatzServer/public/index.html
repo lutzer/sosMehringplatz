@@ -1,8 +1,9 @@
 <!doctype html>
 <html>
 	<head>
-	<title>Pinpoint Mehringplatz</title>
+	<title>Mehringplatz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
 	<script src="libs/jquery-2.1.4.min.js"></script>
 	<script src="libs/socket.io.js"></script>
 	<script src="libs/d3.min.js"></script>
@@ -33,27 +34,33 @@
 	</head>
 	<body>
         <div class="page">
-            <div id="svg">
-            </div>
-            
-            <div id="flash-overlay" class="flash">
-            </div>
-            <div class="header">
-                <a href="#about">&raquo; ÜBER DIE AKTION</a>
-                <a href="#manifest">&raquo; MANIFEST</a>
-                <div class="avoid-clicks">
-                    <h1>PINPOINT MEHRINGPLATZ</h1>
-                    <span class="gray">WAS WIR SCHON IMMER ÜBER DIE BAUSTELLE SAGEN WOLLTEN</span>
+            <div class="header avoid-clicks">
+                <div class="title">
+                    <h1>PINPOINT MEHRINGPLATZ | COMMUNITY NOW?</h1>
+                    <span class="gray">
+                        WAS WIR SCHON IMMER ÜBER DIE BAUSTELLE SAGEN WOLLTEN<br/>
+                        (Klicke auf einen der Bälle)
+                    </span>
                 </div>
             </div>
             <div class="footer avoid-clicks">
                 <img src="images/logos.png"/>
             </div>
+            
+            <div id="svg">
+            </div>
+            
+            <div id="flash-overlay" class="flash">
+            </div>
+            <div class="links">
+                <a href="#about">&raquo; ÜBER DIE AKTION</a>
+                <a href="#manifest">&raquo; MANIFEST</a>
+            </div>
             <div id="popup">
             </div>
         </div>
         <div id="about">
-            <div class="content">
+            <div class="content minheight">
                 <h1>ÜBER DIE AKTION</h1>
                 <div class="images">
                     <img src="images/about1.jpg"/>
@@ -62,10 +69,10 @@
                     <img src="images/about4.jpg"/>
                 </div>
                 <div class="text black">
-                <p>Die Community-Now-Aktion hat im Rahmen des Mehringplatz Straßenfestes 2015 am 26.9.2015 stattgefunden. Das Thema war die Langzeitbausselle inmitten des Mehringplatzes.</p>
-                <p>Die Langzeitbaustelle haben wir zum Thema gemacht, da es für viele Nachbarinnen und Nachbarn des Mehringplatzes als Belastung wahrgenommen wird.</p>
-                <p>Wir haben die Stimmen und Eindrücke der Nachbarschaft gesammelt, um damit die Forderungen der Nachbarschaft zu bündeln und zu stärken. Wir übergeben die Forderungen an verschiedene Interessensträger, Gremien und Initiativen, damit wir sie in ihrer Zielsetzung stärken können.</p>
-                <p>Zudem treffen wir uns mit den involvierten Parteien mit dem Ziel eine schnellere Fertigstellung der Baustelle oder zumindest eine bessere Informationspolitik zu bewirken.
+                <p>Die Community-Now-Aktion hat im Rahmen des Mehringplatz Straßenfestes 2015 am 26.9.2015 stattgefunden. Das Thema war die Langzeitbausselle inmitten des Mehringplatzes.
+                Die Langzeitbaustelle haben wir zum Thema gemacht, da es für viele Nachbarinnen und Nachbarn des Mehringplatzes als Belastung wahrgenommen wird.
+                Wir haben die Stimmen und Eindrücke der Nachbarschaft gesammelt, um damit die Forderungen der Nachbarschaft zu bündeln und zu stärken. Wir übergeben die Forderungen an verschiedene Interessensträger, Gremien und Initiativen, damit wir sie in ihrer Zielsetzung stärken können.
+                Zudem treffen wir uns mit den involvierten Parteien mit dem Ziel eine schnellere Fertigstellung der Baustelle oder zumindest eine bessere Informationspolitik zu bewirken.
                 </p>
 
             </div>    
@@ -74,128 +81,149 @@
             <div class="content">
                 <h1>MANIFEST</h1>
                 <div class="submission-list">
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle red">
                         </div>
                         <p>Der Baulärm ist unerträglich.</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle red "><img src="images/manifest/2.jpg"/></div>
                         <p>Die Baustelle finde ich nicht gut.</p>
                     </div>
-                     <div class="submission right">
+                     <div class="submission">
                         <div class="circle red "><img src="images/manifest/3.jpg"/></div>
                         <p>Durch die Baustelle wird mir der Weg zur Schule versperrt, ich will nicht mehr außen rumgehen.</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle red "></div>
                         <p>Die Baustelle dauert so lange. Nach 3 Jahren sollte sie fertig sein.</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle red "><img src="images/manifest/5.jpg"/></div>
-                        <p>Ich will mich beschweren, dass es immer wenn ich morgens rausgehe, und ihr baut, es so nach Teer stinkt. Da kann man sich gar nicht konzentrieren und man kann nicht mehr das Fenster aufmachen, weil es so laut ist.</p>
+                        <p>Ich will mich beschweren, dass es immer wenn ich morgens rausgehe, und ihr baut, es so nach Teer stinkt. Da kann man sich gar nicht konzentrieren und man kann nicht mehr das Fenster aufmachen, weil es so stinkt.</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle red "></div>
                         <p>Ihr könnt mal den Zaun aufs Minimalste verkleinern und ihn dann auch so lassen. Immer wenn Ihr etwas verändert, kann man den Platz nicht mehr nutzen.</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle red "><img src="images/manifest/7.jpg"/></div>
                         <p>Der Geruch nervt. Ihr müsst schneller machen.</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle red "><img src="images/manifest/8.jpg"/></div>
                         <p>Es ist viel zu laut und es nervt..</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle red "></div>
                         <p>Ich komme aus Argentinien und wohne hier seit 4 Jahren. Ich habe nie etwas anderes als die Baustelle gesehen. Ich würde diese Fläche gern für meine kinder als Spielplatz nutzen. Ich verstehe nicht, wie lange das dauert.</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle red "><img src="images/manifest/9.jpg"/></div>
                         <p>Die Baustelle könnt ihr schneller machen. Wir warten alle.</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle red "><img src="images/manifest/10.jpg"/></div>
                         <p>Es dauert viel zu lange. Wieso machen Sie so lange? Ich will, dass Sie schneller machen, sonst hole ich die Polizei!</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle red "><img src="images/manifest/11.jpg"/></div>
                         <p>Der, der die Baustelle gebaut hat, soll weggehen. Ihr müsst Euch beeilen.</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
+                        <div class="circle red "><img src="images/manifest/2-1.jpg"/></div>
+                        <p>Diese Baustelle dauert länger als der Flughafen!</p>
+                    </div>
+                    <div class="submission">
+                        <div class="circle yellow "><img src="images/manifest/2-2.jpg"/></div>
+                        <p>Wie lange dauert die Baustelle noch?</p>
+                    </div>
+                    <div class="submission">
                         <div class="circle yellow"><img src="images/manifest/12.jpg"/></div>
                         <p>Ich wollte fragen, wie lange sol Baustelle noch eine Baustelle sein wird, und wann wir endlich darüber informiert werden, warum ein Sandhügel von der linken auf die rechte Seite geschaufelt wird und von der rechten zur linken Seite?</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle yellow"></div>
                         <p>Stellt der Baulärm einen Mietmangel dar?</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle yellow"><img src="images/manifest/17.jpg"/></div>
                         <p>Warum ist die Baustelle da?</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle yellow"></div>
                         <p>Arbeitet Ihr auch samstags und sonntags?</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle yellow"><img src="images/manifest/16.jpg"/></div>
                         <p>Wann ist das fertig? Wie lange dauert das?</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle yellow"><img src="images/manifest/14.jpg"/></div>
                         <p>Wann ist die Baustelle fertig?</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle yellow"><img src="images/manifest/18.jpg"/></div>
                         <p>Hallo liebe Baustelle. Ich wollte mal fragen, wie lange du noch hier bleibst? Ich mag ja alle Menschen, aber du könntest langsam mal sagen wie lange du hier noch bleiben willst. und kein Mensch weiß es und keiner weiß, wen man fragen kann. Danke und Tschau.</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle yellow"><img src="images/manifest/19.jpg"/></div>
                         <p>Ich frag mich wann die Baustelle weg ist und wann ich sterbe.</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
+                        <div class="circle yellow"><img src="images/manifest/2-3.jpg"/></div>
+                        <p>Guten Tag, mein Name ist Ranu. Wann ist das endlich fertig ist? Die Baustelle wird immer größer. Ich hoffe, dass es dieses Jahr noch zu ende ist. Ich danke ihnen und noch viel Spaß bei der Baustelle.</p>
+                    </div>
+                    <div class="submission">
+                        <div class="circle yellow"><img src="images/manifest/2-4.jpg"/></div>
+                        <p>Seid wann wird denn am Mehringplatz schon gebaut?</p>
+                    </div>
+                    <div class="submission">
+                        <div class="circle yellow"><img src="images/manifest/2-5.jpg"/></div>
+                        <p>Wie lange muss noch diese blöde Baustelle bestehen?</p>
+                    </div>
+
+                    <div class="submission">
                         <div class="circle green"></div>
                         <p>Es soll einen Park am Mehringplatz geben. Die Baustelle soll endlich mal fertig sein.</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle green"><img src="images/manifest/21.jpg"/></div>
                         <p>Es soll einen Spielplatz geben.</p>
                     </div>
-                    <!--<div class="submission right">
+                    <!--<div class="submission">
                         <div class="circle green"><img src="images/manifest/22.jpg"/></div>
                         <p></p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle green"><img src="images/manifest/23.jpg"/></div>
                         <p></p>
                     </div>-->
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle green"><img src="images/manifest/24.jpg"/></div>
                         <p>Einen Wald</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle green"><img src="images/manifest/25.jpg"/></div>
                         <p>Ich habe eine Idee. und zwar mit den hässlichen Bauzäunen hier. und ich habe eine Idee, was man damit machen kann. Ruf mich an. Tschüss</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle green"><img src="images/manifest/26.jpg"/></div>
                         <p>Eine Wippe.</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle green"><img src="images/manifest/27.jpg"/></div>
                         <p>hallo, hier ist Jason. Baustelle soll fertig werden. Es soll einen Spielplatz und Bänke geben, und eine schöne Wiese.</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle green"><img src="images/manifest/28.jpg"/></div>
                         <p>Hundepark, Spielplatz oder nix</p>
                     </div>
-                    <div class="submission left">
+                    <div class="submission">
                         <div class="circle green"><img src="images/manifest/29.jpg"/></div>
-                        <p>Ihr müsst schneller sein, anstatt in 4 Jahren Verbesserung vorzunehmen. Es soll einen Rummel oder Spielplatz geben/p>
+                        <p>Ihr müsst schneller sein, anstatt in 4 Jahren Verbesserung vorzunehmen. Es soll einen Rummel oder Spielplatz geben</p>
                     </div>
-                    <div class="submission right">
+                    <div class="submission">
                         <div class="circle green"><img src="images/manifest/30.jpg"/></div>
                         <p>Ich wünsche mir, dass die Baustelle bald fertig ist und dass es einen schönen Park und Bänke gibt.</p>
                     </div>
@@ -250,6 +278,8 @@
                     .width(w)
                     .height(h);
 
+                $('.minheight').css('min-height',h);
+
                 system.moveField(0,new Vector(w/2,h/2));
                 system.moveField(1,new Vector(w/2,h/2));
             }
@@ -260,14 +290,16 @@
                 onResize();
 
                 //randomize manifest list
-                $('.submission.left .circle').each(function(ele) {
+                $('.submission:nth-child(even) .circle').each(function(ele) {
                     var margin = Math.random()*20
                     $(this).css('margin-left',margin+'%');
                 });
-                $('.submission.right .circle').each(function(ele) {
+                $('.submission:nth-child(odd) .circle').each(function(ele) {
                     var margin = Math.random()*20
                     $(this).css('margin-right',margin+'%');
                 });
+
+                loadData();
             });
             
             //mouseclickhandler
@@ -277,6 +309,14 @@
                 if (particleIndex) {
                     popupSubmission(particleIndex,false);
                 }
+            });
+
+            //smooth scrolling
+            $('a').click(function(){
+                $('html, body').animate({
+                    scrollTop: $( $.attr(this, 'href') ).offset().top
+                }, 500);
+                return false;
             });
 
             /* Animation Loop */
@@ -356,7 +396,7 @@
 
                 setTimeout(function() {
                     flash();
-                    addSubmission(submission);
+                    addSubmission(submission,false);
                 },2000) //add after 2 seconds
             };
 
@@ -367,28 +407,24 @@
                 setTimeout(function() {
                     $('#flash-overlay').hide();
                 },500);
-            }
+            };
+
+            function loadData() {
+                $.getJSON( 'api/submissions', null, function(data) {
+                    data.forEach( function(elem) {
+                        addSubmission(elem,true);
+                    });
+                } )
+            };
 
             /* SERVER COMMUNICATION */
 
-            var socket = io();
-            socket.on('connect', function() {
-                console.log('socket connected');
-                //get initial list
-                socket.emit('submissions:list'); 
-            });
+            var socket = io('http://localhost:8081');
 
             socket.on('submissions:new', function(res) {
                 console.log('new submission received');
                 console.log(res.data);
                 addNewSubmission(res.data);
-            });
-
-            // only load the initial list once
-            socket.once('submissions:list', function(res) {
-                res.data.forEach( function(elem) {
-                    addSubmission(elem,true);
-                });
             });
 
     		
